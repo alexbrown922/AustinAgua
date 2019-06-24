@@ -1,0 +1,37 @@
+---
+title: "WESimSetUp"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(tidyverse)
+library(janitor)
+```
+
+
+I am creating this markdown for wrangling data to input in the WESim model from the Pacific Institute. First is the given data set on the amount of energy each of the water plants used in specific months. 
+
+### Loading the Austin Data 
+```{r}
+austin_plants = read_csv("Austin_WaterEnergy_Consumption_for_All_Plants.csv") %>% 
+  clean_names()
+austin_plant_water = read_csv("Austin_Water_-_Gallons_of_Water_and_Wastewater_Treated.csv") %>% 
+  clean_names()
+```
+
+```{r}
+austin_plant_sum = full_join(austin_plant_water,austin_plants) %>% 
+  group_by(plant, type_of_plant) %>% 
+  filter(!is.na(mg_treated)) %>% 
+  filter(!is.na(type_of_plant)) %>% 
+  summarise(
+    meankwr = mean(k_wh_per_mg_treated),
+    meanwater = mean(mg_treated)
+  )
+```
+

@@ -1,0 +1,421 @@
+Year,Month,Plant,Type of Water,MG Treated
+2011,Oct,SAR Plant,Wastewater,1282.78
+2011,Oct,Walnut Creek Plant,Wastewater,1570.83
+2011,Oct,Davis,Water,2512.94
+2011,Oct,Water Treatment Plant 4,Water,
+2011,Oct,Ullrich,Water,2129.12
+2011,Nov,Walnut Creek Plant,Wastewater,1603.26
+2011,Nov,SAR Plant,Wastewater,1211.05
+2011,Nov,Ullrich,Water,1387.45
+2011,Nov,Davis,Water,2405.53
+2011,Nov,Water Treatment Plant 4,Water,
+2011,Dec,Walnut Creek Plant,Wastewater,1880.3
+2011,Dec,SAR Plant,Wastewater,1315.69
+2011,Dec,Davis,Water,1646.5
+2011,Dec,Ullrich,Water,1558.34
+2011,Dec,Water Treatment Plant 4,Water,
+2012,Jan,SAR Plant,Wastewater,1386.29
+2012,Jan,Walnut Creek Plant,Wastewater,1806.68
+2012,Jan,Ullrich,Water,1880.21
+2012,Jan,Davis,Water,1480.63
+2012,Jan,Water Treatment Plant 4,Water,
+2012,Feb,Walnut Creek Plant,Wastewater,1726.62
+2012,Feb,SAR Plant,Wastewater,1455.53
+2012,Feb,Water Treatment Plant 4,Water,
+2012,Feb,Davis,Water,1095.4
+2012,Feb,Ullrich,Water,1913.29
+2012,Mar,SAR Plant,Wastewater,1636.58
+2012,Mar,Walnut Creek Plant,Wastewater,2003.3
+2012,Mar,Davis,Water,1476
+2012,Mar,Water Treatment Plant 4,Water,
+2012,Mar,Ullrich,Water,1866.38
+2012,Apr,SAR Plant,Wastewater,1398.6
+2012,Apr,Walnut Creek Plant,Wastewater,1675.08
+2012,Apr,Davis,Water,1423.08
+2012,Apr,Water Treatment Plant 4,Water,
+2012,Apr,Ullrich,Water,2644.95
+2012,May,Walnut Creek Plant,Wastewater,1875.11
+2012,May,SAR Plant,Wastewater,1535.33
+2012,May,Water Treatment Plant 4,Water,
+2012,May,Ullrich,Water,2697.93
+2012,May,Davis,Water,1428.7
+2012,Jun,Walnut Creek Plant,Wastewater,1646.03
+2012,Jun,SAR Plant,Wastewater,1386.11
+2012,Jun,Water Treatment Plant 4,Water,
+2012,Jun,Davis,Water,1831.58
+2012,Jun,Ullrich,Water,3134.22
+2012,Jul,Walnut Creek Plant,Wastewater,1822
+2012,Jul,SAR Plant,Wastewater,1492.41
+2012,Jul,Davis,Water,2197.73
+2012,Jul,Water Treatment Plant 4,Water,
+2012,Jul,Ullrich,Water,2506.69
+2012,Aug,SAR Plant,Wastewater,1440.88
+2012,Aug,Walnut Creek Plant,Wastewater,1672.85
+2012,Aug,Ullrich,Water,2986.77
+2012,Aug,Water Treatment Plant 4,Water,
+2012,Aug,Davis,Water,2419.13
+2012,Sep,SAR Plant,Wastewater,1400.8
+2012,Sep,Walnut Creek Plant,Wastewater,1635.39
+2012,Sep,Davis,Water,2083.6
+2012,Sep,Water Treatment Plant 4,Water,
+2012,Sep,Ullrich,Water,2526.95
+2012,Oct,Walnut Creek Plant,Wastewater,1685.97
+2012,Oct,SAR Plant,Wastewater,1379.75
+2012,Oct,Water Treatment Plant 4,Water,
+2012,Oct,Ullrich,Water,2141.34
+2012,Oct,Davis,Water,1914.93
+2012,Nov,SAR Plant,Wastewater,1213.18
+2012,Nov,Walnut Creek Plant,Wastewater,1509.46
+2012,Nov,Ullrich,Water,1928.23
+2012,Nov,Water Treatment Plant 4,Water,
+2012,Nov,Davis,Water,2036.83
+2012,Dec,Walnut Creek Plant,Wastewater,1564.94
+2012,Dec,SAR Plant,Wastewater,1215.73
+2012,Dec,Water Treatment Plant 4,Water,
+2012,Dec,Ullrich,Water,1506.2
+2012,Dec,Davis,Water,2139.42
+2013,Jan,Walnut Creek Plant,Wastewater,1723.28
+2013,Jan,SAR Plant,Wastewater,1282.01
+2013,Jan,Water Treatment Plant 4,Water,
+2013,Jan,Davis,Water,1986.77
+2013,Jan,Ullrich,Water,1408.36
+2013,Feb,Walnut Creek Plant,Wastewater,1455.89
+2013,Feb,SAR Plant,Wastewater,1147.62
+2013,Feb,Davis,Water,1837.18
+2013,Feb,Ullrich,Water,1335.03
+2013,Feb,Water Treatment Plant 4,Water,
+2013,Mar,Walnut Creek Plant,Wastewater,1627.88
+2013,Mar,SAR Plant,Wastewater,1320.06
+2013,Mar,Ullrich,Water,1886.52
+2013,Mar,Water Treatment Plant 4,Water,
+2013,Mar,Davis,Water,1898.64
+2013,Apr,Walnut Creek Plant,Wastewater,1648.12
+2013,Apr,SAR Plant,Wastewater,1375.01
+2013,Apr,Ullrich,Water,1908.31
+2013,Apr,Water Treatment Plant 4,Water,
+2013,Apr,Davis,Water,1687.8
+2013,May,Walnut Creek Plant,Wastewater,1697.77
+2013,May,SAR Plant,Wastewater,1473.3
+2013,May,Water Treatment Plant 4,Water,
+2013,May,Ullrich,Water,2071.88
+2013,May,Davis,Water,1880.96
+2013,Jun,SAR Plant,Wastewater,1406.27
+2013,Jun,Walnut Creek Plant,Wastewater,1441.81
+2013,Jun,Davis,Water,2019.2
+2013,Jun,Water Treatment Plant 4,Water,
+2013,Jun,Ullrich,Water,2321.26
+2013,Jul,Walnut Creek Plant,Wastewater,1520.53
+2013,Jul,SAR Plant,Wastewater,1382.56
+2013,Jul,Ullrich,Water,2286.5
+2013,Jul,Davis,Water,2237.42
+2013,Jul,Water Treatment Plant 4,Water,
+2013,Aug,SAR Plant,Wastewater,1419.22
+2013,Aug,Walnut Creek Plant,Wastewater,1431.62
+2013,Aug,Davis,Water,2443.89
+2013,Aug,Water Treatment Plant 4,Water,
+2013,Aug,Ullrich,Water,2531.21
+2013,Sep,Walnut Creek Plant,Wastewater,1452.53
+2013,Sep,SAR Plant,Wastewater,1438.79
+2013,Sep,Davis,Water,2121.07
+2013,Sep,Ullrich,Water,2199.22
+2013,Sep,Water Treatment Plant 4,Water,
+2013,Oct,SAR Plant,Wastewater,1779.92
+2013,Oct,Walnut Creek Plant,Wastewater,1880.57
+2013,Oct,Ullrich,Water,2002.18
+2013,Oct,Water Treatment Plant 4,Water,
+2013,Oct,Davis,Water,1724.26
+2013,Nov,SAR Plant,Wastewater,1719.83
+2013,Nov,Walnut Creek Plant,Wastewater,1927.2
+2013,Nov,Water Treatment Plant 4,Water,
+2013,Nov,Ullrich,Water,1910.53
+2013,Nov,Davis,Water,1631.73
+2013,Dec,Walnut Creek Plant,Wastewater,1668.15
+2013,Dec,SAR Plant,Wastewater,1505.83
+2013,Dec,Water Treatment Plant 4,Water,
+2013,Dec,Davis,Water,1608.79
+2013,Dec,Ullrich,Water,1533.08
+2014,Jan,Walnut Creek Plant,Wastewater,1542.49
+2014,Jan,SAR Plant,Wastewater,1416.37
+2014,Jan,Ullrich,Water,1605.56
+2014,Jan,Water Treatment Plant 4,Water,
+2014,Jan,Davis,Water,1574.63
+2014,Feb,SAR Plant,Wastewater,1272.31
+2014,Feb,Walnut Creek Plant,Wastewater,1343.73
+2014,Feb,Water Treatment Plant 4,Water,
+2014,Feb,Ullrich,Water,1555.76
+2014,Feb,Davis,Water,1359.39
+2014,Mar,SAR Plant,Wastewater,1459.21
+2014,Mar,Walnut Creek Plant,Wastewater,1499.25
+2014,Mar,Davis,Water,1421.5
+2014,Mar,Water Treatment Plant 4,Water,
+2014,Mar,Ullrich,Water,1945.02
+2014,Apr,SAR Plant,Wastewater,1458.95
+2014,Apr,Walnut Creek Plant,Wastewater,1401.52
+2014,Apr,Davis,Water,1604.78
+2014,Apr,Water Treatment Plant 4,Water,
+2014,Apr,Ullrich,Water,1936.37
+2014,May,SAR Plant,Wastewater,1611.33
+2014,May,Walnut Creek Plant,Wastewater,1638.26
+2014,May,Ullrich,Water,1943.44
+2014,May,Davis,Water,1923.42
+2014,May,Water Treatment Plant 4,Water,
+2014,Jun,Walnut Creek Plant,Wastewater,1644.52
+2014,Jun,SAR Plant,Wastewater,1522.29
+2014,Jun,Davis,Water,1775.84
+2014,Jun,Ullrich,Water,1977.44
+2014,Jun,Water Treatment Plant 4,Water,
+2014,Jul,Walnut Creek Plant,Wastewater,1622.84
+2014,Jul,SAR Plant,Wastewater,1397.69
+2014,Jul,Davis,Water,1994.97
+2014,Jul,Ullrich,Water,2320.11
+2014,Jul,Water Treatment Plant 4,Water,
+2014,Aug,SAR Plant,Wastewater,1352.1
+2014,Aug,Walnut Creek Plant,Wastewater,1509.02
+2014,Aug,Davis,Water,2259.4
+2014,Aug,Water Treatment Plant 4,Water,
+2014,Aug,Ullrich,Water,2708.25
+2014,Sep,Walnut Creek Plant,Wastewater,1662.52
+2014,Sep,SAR Plant,Wastewater,1462.38
+2014,Sep,Davis,Water,1952.42
+2014,Sep,Water Treatment Plant 4,Water,
+2014,Sep,Ullrich,Water,2162.96
+2014,Oct,SAR Plant,Wastewater,1417.22
+2014,Oct,Walnut Creek Plant,Wastewater,1537.01
+2014,Oct,Ullrich,Water,2376.44
+2014,Oct,Water Treatment Plant 4,Water,
+2014,Oct,Davis,Water,1802.24
+2014,Nov,SAR Plant,Wastewater,1427.74
+2014,Nov,Walnut Creek Plant,Wastewater,1632.6
+2014,Nov,Ullrich,Water,1656.01
+2014,Nov,Davis,Water,1334.59
+2014,Nov,Water Treatment Plant 4,Water,338.94
+2014,Dec,Walnut Creek Plant,Wastewater,1579.68
+2014,Dec,SAR Plant,Wastewater,1344.65
+2014,Dec,Davis,Water,1224.63
+2014,Dec,Water Treatment Plant 4,Water,667.74
+2014,Dec,Ullrich,Water,1245.05
+2015,Jan,Walnut Creek Plant,Wastewater,1991.62
+2015,Jan,SAR Plant,Wastewater,1596.12
+2015,Jan,Water Treatment Plant 4,Water,591.72
+2015,Jan,Davis,Water,1199.95
+2015,Jan,Ullrich,Water,1351.76
+2015,Feb,SAR Plant,Wastewater,1353.01
+2015,Feb,Walnut Creek Plant,Wastewater,1563.68
+2015,Feb,Water Treatment Plant 4,Water,511.26
+2015,Feb,Ullrich,Water,1223.65
+2015,Feb,Davis,Water,1098.92
+2015,Mar,Walnut Creek Plant,Wastewater,2112.37
+2015,Mar,SAR Plant,Wastewater,1615.24
+2015,Mar,Ullrich,Water,1402.81
+2015,Mar,Water Treatment Plant 4,Water,595.66
+2015,Mar,Davis,Water,1209.82
+2015,Apr,Walnut Creek Plant,Wastewater,1710.43
+2015,Apr,SAR Plant,Wastewater,1424.8
+2015,Apr,Ullrich,Water,1644.98
+2015,Apr,Water Treatment Plant 4,Water,674.93
+2015,Apr,Davis,Water,1081.17
+2015,May,SAR Plant,Wastewater,2017.66
+2015,May,Walnut Creek Plant,Wastewater,3271.27
+2015,May,Water Treatment Plant 4,Water,527.36
+2015,May,Ullrich,Water,1550.41
+2015,May,Davis,Water,1253.48
+2015,Jun,Walnut Creek Plant,Wastewater,2467.22
+2015,Jun,SAR Plant,Wastewater,1690.45
+2015,Jun,Water Treatment Plant 4,Water,567.2
+2015,Jun,Ullrich,Water,1748.03
+2015,Jun,Davis,Water,1185.71
+2015,Jul,Walnut Creek Plant,Wastewater,1729.44
+2015,Jul,SAR Plant,Wastewater,1455.25
+2015,Jul,Ullrich,Water,2103.03
+2015,Jul,Davis,Water,1651.98
+2015,Jul,Water Treatment Plant 4,Water,819.27
+2015,Aug,Walnut Creek Plant,Wastewater,1549.5
+2015,Aug,SAR Plant,Wastewater,1396.76
+2015,Aug,Water Treatment Plant 4,Water,737.93
+2015,Aug,Davis,Water,2318.79
+2015,Aug,Ullrich,Water,2308.57
+2015,Sep,SAR Plant,Wastewater,1317
+2015,Sep,Walnut Creek Plant,Wastewater,1510.47
+2015,Sep,Ullrich,Water,1951.07
+2015,Sep,Davis,Water,1996.46
+2015,Sep,Water Treatment Plant 4,Water,672.8
+2015,Oct,Walnut Creek Plant,Wastewater,1842.59
+2015,Oct,SAR Plant,Wastewater,1421.64
+2015,Oct,Davis,Water,1907.74
+2015,Oct,Water Treatment Plant 4,Water,650.1
+2015,Oct,Ullrich,Water,1910.88
+2015,Nov,Walnut Creek Plant,Wastewater,2175.64
+2015,Nov,SAR Plant,Wastewater,1557.58
+2015,Nov,Ullrich,Water,1456.61
+2015,Nov,Davis,Water,1446.51
+2015,Nov,Water Treatment Plant 4,Water,479.8
+2015,Dec,Walnut Creek Plant,Wastewater,2260.24
+2015,Dec,SAR Plant,Wastewater,1506.22
+2015,Dec,Water Treatment Plant 4,Water,639.46
+2015,Dec,Ullrich,Water,1530.84
+2015,Dec,Davis,Water,1100.9
+2016,Jan,Walnut Creek Plant,Wastewater,1918.57
+2016,Jan,SAR Plant,Wastewater,1384.25
+2016,Jan,Water Treatment Plant 4,Water,667.05
+2016,Jan,Ullrich,Water,1430.02
+2016,Jan,Davis,Water,1194.1
+2016,Feb,Walnut Creek Plant,Wastewater,1580.85
+2016,Feb,SAR Plant,Wastewater,1261.13
+2016,Feb,Davis,Water,1026.54
+2016,Feb,Ullrich,Water,1524.37
+2016,Feb,Water Treatment Plant 4,Water,732.52
+2016,Mar,Walnut Creek Plant,Wastewater,2013.97
+2016,Mar,SAR Plant,Wastewater,1535.46
+2016,Mar,Ullrich,Water,1664.42
+2016,Mar,Davis,Water,1245.25
+2016,Mar,Water Treatment Plant 4,Water,655.7
+2016,Apr,Walnut Creek Plant,Wastewater,2018.4
+2016,Apr,SAR Plant,Wastewater,1570.76
+2016,Apr,Davis,Water,1161.9
+2016,Apr,Ullrich,Water,1642.46
+2016,Apr,Water Treatment Plant 4,Water,625.09
+2016,May,Walnut Creek Plant,Wastewater,2231.39
+2016,May,SAR Plant,Wastewater,1874.2
+2016,May,Water Treatment Plant 4,Water,794.85
+2016,May,Davis,Water,1207.3
+2016,May,Ullrich,Water,1522.92
+2016,Jun,SAR Plant,Wastewater,1710.98
+2016,Jun,Walnut Creek Plant,Wastewater,2004.46
+2016,Jun,Water Treatment Plant 4,Water,1014.97
+2016,Jun,Ullrich,Water,1732.34
+2016,Jun,Davis,Water,1219.9
+2016,Jul,Walnut Creek Plant,Wastewater,1651.1
+2016,Jul,SAR Plant,Wastewater,1400.54
+2016,Jul,Water Treatment Plant 4,Water,1006.17
+2016,Jul,Davis,Water,1760.94
+2016,Jul,Ullrich,Water,2241.63
+2016,Aug,SAR Plant,Wastewater,1651.72
+2016,Aug,Walnut Creek Plant,Wastewater,2025.07
+2016,Aug,Water Treatment Plant 4,Water,949
+2016,Aug,Davis,Water,1502.52
+2016,Aug,Ullrich,Water,1981.3
+2016,Sep,SAR Plant,Wastewater,1390
+2016,Sep,Walnut Creek Plant,Wastewater,1692.92
+2016,Sep,Ullrich,Water,1986.19
+2016,Sep,Davis,Water,1420.1
+2016,Sep,Water Treatment Plant 4,Water,892.57
+2016,Oct,Walnut Creek Plant,Wastewater,1601.07
+2016,Oct,SAR Plant,Wastewater,1291.86
+2016,Oct,Water Treatment Plant 4,Water,677.14
+2016,Oct,Ullrich,Water,2110.69
+2016,Oct,Davis,Water,1655.4
+2016,Nov,Walnut Creek Plant,Wastewater,1648.08
+2016,Nov,SAR Plant,Wastewater,1210.64
+2016,Nov,Davis,Water,1235.99
+2016,Nov,Ullrich,Water,1687.94
+2016,Nov,Water Treatment Plant 4,Water,729.58
+2016,Dec,SAR Plant,Wastewater,1221.8
+2016,Dec,Walnut Creek Plant,Wastewater,1737.72
+2016,Dec,Water Treatment Plant 4,Water,646.77
+2016,Dec,Davis,Water,1044.33
+2016,Dec,Ullrich,Water,1787.96
+2017,Jan,Walnut Creek Plant,Wastewater,1957.24
+2017,Jan,SAR Plant,Wastewater,1556.17
+2017,Jan,Water Treatment Plant 4,Water,714.1
+2017,Jan,Ullrich,Water,1707.86
+2017,Jan,Davis,Water,1036.3
+2017,Feb,SAR Plant,Wastewater,1348.94
+2017,Feb,Walnut Creek Plant,Wastewater,1678.15
+2017,Feb,Davis,Water,839.35
+2017,Feb,Ullrich,Water,1652.66
+2017,Feb,Water Treatment Plant 4,Water,718.14
+2017,Mar,Walnut Creek Plant,Wastewater,1950.11
+2017,Mar,SAR Plant,Wastewater,1530.52
+2017,Mar,Water Treatment Plant 4,Water,844.99
+2017,Mar,Ullrich,Water,1815.8
+2017,Mar,Davis,Water,994.72
+2017,Apr,Walnut Creek Plant,Wastewater,1746.69
+2017,Apr,SAR Plant,Wastewater,1453.78
+2017,Apr,Davis,Water,1014.54
+2017,Apr,Water Treatment Plant 4,Water,785.26
+2017,Apr,Ullrich,Water,1966.02
+2017,May,Walnut Creek Plant,Wastewater,1728.85
+2017,May,SAR Plant,Wastewater,1393.45
+2017,May,Water Treatment Plant 4,Water,981.17
+2017,May,Ullrich,Water,2015.98
+2017,May,Davis,Water,1249
+2017,Jun,SAR Plant,Wastewater,1369.12
+2017,Jun,Walnut Creek Plant,Wastewater,1762.5
+2017,Jun,Davis,Water,1147.22
+2017,Jun,Water Treatment Plant 4,Water,964.46
+2017,Jun,Ullrich,Water,2234.41
+2017,Jul,Walnut Creek Plant,Wastewater,1587
+2017,Jul,SAR Plant,Wastewater,1376.46
+2017,Jul,Ullrich,Water,2729.14
+2017,Jul,Davis,Water,1382.8
+2017,Jul,Water Treatment Plant 4,Water,1029.22
+2017,Aug,SAR Plant,Wastewater,1549.58
+2017,Aug,Walnut Creek Plant,Wastewater,1994.42
+2017,Aug,Water Treatment Plant 4,Water,912.35
+2017,Aug,Davis,Water,1740.3
+2017,Aug,Ullrich,Water,2197.32
+2017,Sep,SAR Plant,Wastewater,1343.97
+2017,Sep,Walnut Creek Plant,Wastewater,1771.07
+2017,Sep,Ullrich,Water,2046.47
+2017,Sep,Water Treatment Plant 4,Water,882.54
+2017,Sep,Davis,Water,1435.76
+2017,Oct,Walnut Creek Plant,Wastewater,1732.86
+2017,Oct,SAR Plant,Wastewater,1327.43
+2017,Oct,Ullrich,Water,1918.64
+2017,Oct,Davis,Water,1370.3
+2017,Oct,Water Treatment Plant 4,Water,858.57
+2017,Nov,SAR Plant,Wastewater,1182.15
+2017,Nov,Walnut Creek Plant,Wastewater,1575.42
+2017,Nov,Ullrich,Water,1809.87
+2017,Nov,Davis,Water,1230
+2017,Nov,Water Treatment Plant 4,Water,737.69
+2017,Dec,Walnut Creek Plant,Wastewater,1714.24
+2017,Dec,SAR Plant,Wastewater,1284.36
+2017,Dec,Ullrich,Water,1591.5
+2017,Dec,Davis,Water,1931.3
+2017,Dec,Water Treatment Plant 4,Water,708.56
+2018,Jan,SAR Plant,Wastewater,1353.95
+2018,Jan,Walnut Creek Plant,Wastewater,1664.97
+2018,Jan,Ullrich,Water,1683.06
+2018,Jan,Water Treatment Plant 4,Water,718.63
+2018,Jan,Davis,Water,1203.43
+2018,Feb,Walnut Creek Plant,Wastewater,1538.27
+2018,Feb,SAR Plant,Wastewater,1192.16
+2018,Feb,Davis,Water,1083.52
+2018,Feb,Water Treatment Plant 4,Water,614.4
+2018,Feb,Ullrich,Water,1407.74
+2018,Mar,SAR Plant,Wastewater,1443.13
+2018,Mar,Walnut Creek Plant,Wastewater,1810.19
+2018,Mar,Ullrich,Water,1674.31
+2018,Mar,Davis,Water,1211.7
+2018,Mar,Water Treatment Plant 4,Water,792.5
+2018,Apr,SAR Plant,Wastewater,1364.07
+2018,Apr,Walnut Creek Plant,Wastewater,1712.54
+2018,Apr,Ullrich,Water,1745.76
+2018,Apr,Water Treatment Plant 4,Water,823.67
+2018,Apr,Davis,Water,1229.9
+2018,May,Walnut Creek Plant,Wastewater,1725.1
+2018,May,SAR Plant,Wastewater,1485.95
+2018,May,Davis,Water,1219.14
+2018,May,Water Treatment Plant 4,Water,1048.59
+2018,May,Ullrich,Water,2144.19
+2018,Jun,Walnut Creek Plant,Wastewater,1606.64
+2018,Jun,SAR Plant,Wastewater,1274.02
+2018,Jun,Davis,Water,1370.82
+2018,Jun,Ullrich,Water,2328.72
+2018,Jun,Water Treatment Plant 4,Water,967.84
+2018,Jul,Walnut Creek Plant,Wastewater,1680.19
+2018,Jul,SAR Plant,Wastewater,1310.14
+2018,Jul,Ullrich,Water,2521.1
+2018,Jul,Davis,Water,1487.75
+2018,Jul,Water Treatment Plant 4,Water,958.21
+2018,Aug,Walnut Creek Plant,Wastewater,1590.18
+2018,Aug,SAR Plant,Wastewater,1125.73
+2018,Aug,Water Treatment Plant 4,Water,1110.61
+2018,Aug,Davis,Water,1556.63
+2018,Aug,Ullrich,Water,2818.69
+2018,Sep,SAR Plant,Wastewater,1293.81
+2018,Sep,Walnut Creek Plant,Wastewater,1832.61
+2018,Sep,Water Treatment Plant 4,Water,
+2018,Sep,Davis,Water,1369.2
+2018,Sep,Ullrich,Water,
