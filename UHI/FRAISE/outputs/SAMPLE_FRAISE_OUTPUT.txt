@@ -1,0 +1,27 @@
+# FRAISE model output
+#
+# SITE: a code for the location
+# DOY : day of year 
+# UZE : Urban Zone to characterize Energy partitioning (2 = Low Density; 3 = Medium Density; 4 = High Density)
+#
+# All following values are for mean day time (+/- 3 hours around noon)
+#
+# CHI_TOT  : total active surface index                                                                    (-)
+# CHI_BUILT: active built index                                                                            (-)
+# CHI_VEG  : active vegetation index                                                                       (-)
+# QUP_RAT  : predicted ratio of outgoing radiant energy to that of incoming (excluding QF contribution)    (-)
+# QS_RAT   : predicted ratio of net storage heat (excluding QF contribution)                               (-)
+# QE_RAT   : predicted ratio of turbulent latent heat (excluding QF contribution)                          (-)
+# BOWEN    : predicted Bowen ratio                    (excluding QF contribution)                          (-)
+# QDOWN    : incoming raiant energy (user input)                                                          W m{-2}
+# QF       : anthropogenic heat (user input)                                                              W m{-2}
+# QUP      : predicted outgoing radiant flux (including QF contribution)                                  W m{-2}
+# QS       : predicted net storage heat flux (including QF contribution)                                  W m{-2}
+# QH_RES   : predicted (residual) turbulent sensible heat flux (including QF contribution)                W m{-2}
+# QH_BOW   : predicted (from Bowen ratio) turbulent sensible heat flux (including QF contribution)        W m{-2}
+# QE       : predicted turbulent latent heat flux (including QF contribution)                             W m{-2}
+# QSTAR    : predicted net all-wave radiative flux (including QF contribution)                            W m{-2}
+#
+# SITE    DOY   UZE  CHI_TOT  CHI_URB  CHI_VEG  QUP_RAT  QS_RAT   QE_RAT    BOWEN    QDOWN         QF        QUP        QS       QH_RES     QH_BOW        QE       QSTAR 
+#  -       -     -     -        -        -         -       -        -         -      W m{-2}     W m{-2}   W m{-2}    W m{-2}    W m{-2}    W m{-2}    W m{-2}    W m{-2}
+ LODZ     172    4    0.557    0.133    0.423    0.589    0.151    0.109    1.625   1151.586     10.975    684.860    175.828    176.724    205.583    125.148    466.726
