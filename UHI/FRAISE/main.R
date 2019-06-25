@@ -14,7 +14,7 @@ rm(list=ls())
 #########################################################################################
 
 # Path to the main directory (FRAISE) where the current script is located:
-FRAISE_PATH <- "C:/Rscripts/FRAISE/"
+FRAISE_PATH <- "~/Energy/AustinAgua/UHI/FRAISE/"
 
 # Output path (directory "FRAISE/outputs" by default):
 PATH_OUT <- paste(FRAISE_PATH,"outputs/",sep="")
