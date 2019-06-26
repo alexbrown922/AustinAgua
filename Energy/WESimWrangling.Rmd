@@ -37,3 +37,19 @@ austin_plant_sum = full_join(austin_plant_water,austin_plants) %>%
   )
 ```
 
+### Loading a data set that has the breakdown of Austin Energy sources 
+Renewable breakdown is estimated from: https://austinenergy.com/ae/about/environment/renewable-power-generation
+
+As of June 26, 2019 the renewable energy split was:
+644.6 MW Solar (32.7%)
+1219 MW Wind (61.8%)
+107.8 MW Biomass (5.5%)
+
+For original data from the city of Austin, see the "Austin_Utility_Orginal.csv"
+
+```{r}
+austin_energy = read_csv("Austin_Utility_Energy_Renewable_Edits.csv") %>% 
+  clean_names()
+```
+
+### Creating a tibble that has both the facilities and their breakdown of energy use
