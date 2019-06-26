@@ -16,7 +16,7 @@ library(janitor)
 
 I am creating this markdown for wrangling data to input in the WESim model from the Pacific Institute. First is the given data set on the amount of energy each of the water plants used in specific months. 
 
-### Loading the Austin Data 
+### Loading the Austin Water Facility Data 
 ```{r}
 austin_plants = read_csv("Austin_WaterEnergy_Consumption_for_All_Plants.csv") %>% 
   clean_names()
@@ -24,6 +24,8 @@ austin_plant_water = read_csv("Austin_Water_-_Gallons_of_Water_and_Wastewater_Tr
   clean_names()
 ```
 
+
+### Joining the data sets of energy and water consumption for the facilities 
 ```{r}
 austin_plant_sum = full_join(austin_plant_water,austin_plants) %>% 
   group_by(plant, type_of_plant) %>% 
