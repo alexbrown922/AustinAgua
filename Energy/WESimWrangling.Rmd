@@ -56,7 +56,7 @@ austin_energy = read_csv("Austin_Utility_Energy_Renewable_Edits.csv") %>%
 
 
 ```{r}
-austin_energy_2017 = full_join(austin_plant_sum,austin_energy) %>% 
+austin_energy_sum = full_join(austin_plant_sum,austin_energy) %>% 
   filter(!is.na(plant)) %>%
   filter(!is.na(coal)) %>% 
   mutate(perc_coal = (coal/100)*meankwr) %>% 
@@ -65,8 +65,22 @@ austin_energy_2017 = full_join(austin_plant_sum,austin_energy) %>%
   mutate(perc_solar = (solar/100)*meankwr) %>% 
   mutate(perc_wind = (wind/100)*meankwr) %>% 
   mutate(perc_biomass = (biomass/100)*meankwr) %>% 
-  select(year, plant, meankwr, meanwater, perc_coal, perc_natural_gas_oil, perc_nuclear, perc_wind, perc_solar, perc_biomass) %>% 
-  filter(year == 2017)
+  select(year, plant, meankwr, meanwater, perc_coal, perc_natural_gas_oil, perc_nuclear, perc_wind, perc_solar, perc_biomass) #%>% 
+  #filter(year == 2017)
  
+```
+
+
+### Exporting the energy sum csv that only includes water treatment plants
+
+```{r}
+austin_water_treat = austin_energy_sum %>% 
+  filter(plant !="SAR Plant") %>% 
+  filter(plant != "Walnut Creek Plant")
+
+write_delim(austin_water_treat, 
+            "austin_water_treatmemt.csv", 
+            delim = ",", 
+            na = "")
 ```
 
