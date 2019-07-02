@@ -19,18 +19,29 @@ library(lubridate)
 ```
 
 
-
+The merge data set combines the two in a not real, but useful way in excel. This is only for testing the SUEWS model process
 ```{r}
 weather_data = read_csv("AustinJuneExampleWeather.csv")
 radiation_data = read_csv("AustinJuneExampleData.csv")
+weather_maser = read_csv("AustinJuneExampleDatamerge.csv")
 ```
 
 ###Step 2: Finding a way to convert the two different time signatures
 One data set uses five minute intervals for the entire 24 hour period of the day. the other dataset uses measurements twice an hour. Both will serve for UMEP, but require somewrangling to match up. 
 
 ```{r}
-weather_master= weather_data %>% 
-  #mutate(datetime = as_datetime(weather_data$DATE)) %>% 
-  mutate(hour= DATE$min)
+wm_clean = weather_maser %>% 
+  mutate(rainfall=(as.numeric(precipitation_in))*25.4) %>%
+  mutate(wind=windspeed_mph*0.44704)%>%
+  mutate(pressure = pressure_Hg*3.38639) %>% 
+  mutate(radiation = kwm2/1000) %>% 
+  select(year, month, day, hour, minute, temp, rh, wind, rainfall, pressure, radiation
+         )
+
+
+write_delim(wm_clean, 
+            "austin_june.csv", 
+            delim = ",", 
+            na = "")
 ```
 
