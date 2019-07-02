@@ -52,9 +52,19 @@ austin_energy = read_csv("Austin_Utility_Energy_Renewable_Edits.csv") %>%
   clean_names()
 ```
 
+
+
+```{r, include=FALSE}
+#Calculating the emission factors for the energy sources for Austin using the data from above and the EPA tool https://www.epa.gov/sites/production/files/2015-07/documents/emission-factors_2014.pdf
+#for utility coal, 95.52 is kg CO2 per mmBtu, 11 for CH4, 1.6 for NOX
+#For biomass (wood based as is the Austin plant) 93.80 7.2 3.6
+#Nuclear--not finding anything good for this, going to assume that it is 0. Big assumption
+emission_factors = data.frame(fuel = c("coal", "coal", "coal", "biomass", "biomass", "biomass"), gas=c("CO2", "CH4", "NOX", "CO2", "CH4", "NOX"), mmbtu = c(95.52, 0.11, 0.016, 93.80, 0.072, 0.036)) %>% 
+  mutate(kwh = round(mmbtu*0.0034095106405145, 6))
+
+```
+
 ### Creating a tibble that has both the facilities and their breakdown of energy use
-
-
 ```{r}
 austin_energy_sum = full_join(austin_plant_sum,austin_energy) %>% 
   filter(!is.na(plant)) %>%
@@ -76,7 +86,15 @@ austin_energy_sum = full_join(austin_plant_sum,austin_energy) %>%
 ```{r}
 austin_water_treat = austin_energy_sum %>% 
   filter(plant !="SAR Plant") %>% 
-  filter(plant != "Walnut Creek Plant")
+  filter(plant != "Walnut Creek Plant") %>% 
+  group_by(plant) %>% 
+  summarise(mean_coal = mean(perc_coal), 
+            mean_ng = mean(perc_natural_gas_oil)*0.0341296, #to convert to therms
+            mean_wind = mean(perc_wind), 
+            mean_solar = mean(perc_solar), 
+            mean_biomass = mean(perc_biomass), 
+            mean_nuclear = mean(perc_nuclear))
+
 
 write_delim(austin_water_treat, 
             "austin_water_treatmemt.csv", 
