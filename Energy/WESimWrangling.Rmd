@@ -93,7 +93,8 @@ austin_water_treat = austin_energy_sum %>%
             mean_wind = mean(perc_wind), 
             mean_solar = mean(perc_solar), 
             mean_biomass = mean(perc_biomass), 
-            mean_nuclear = mean(perc_nuclear))
+            mean_nuclear = mean(perc_nuclear), 
+            noncarbon_renew = mean_solar+mean_wind+mean_nuclear)
 
 
 write_delim(austin_water_treat, 
