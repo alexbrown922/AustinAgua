@@ -23,7 +23,7 @@ austin_plants = read_csv("Austin_WaterEnergy_Consumption_for_All_Plants.csv") %>
 austin_plant_water = read_csv("Austin_Water_-_Gallons_of_Water_and_Wastewater_Treated.csv") %>% 
   clean_names()
 ```
-
+;
 
 ### Joining the data sets of energy and water consumption for the facilities 
 ```{r}
@@ -35,6 +35,14 @@ austin_plant_sum = full_join(austin_plant_water,austin_plants) %>%
     meankwr = mean(k_wh_per_mg_treated),
     meanwater = mean(mg_treated)
   )
+
+just_utility = austin_plant_sum %>% 
+  filter(plant !="SAR Plant") %>% 
+  filter(plant != "Walnut Creek Plant") %>% 
+  group_by(plant) %>% 
+  summarise(meankwh_mg = mean(meankwr), 
+            meanmg =mean(meanwater))
+  
 ```
 
 ### Loading a data set that has the breakdown of Austin Energy sources 
