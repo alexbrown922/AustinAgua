@@ -14,9 +14,26 @@ library(tidyverse)
 library(sf)
 library(leaflet)
 library(tmap)
+library(spatstat)
+library(maptools)
+library(sp)
+library(raster)
 ```
 
 ```{r}
 tree_prioritization <- st_read(dsn = ".", layer = "geo_export_2e82f388-c013-45a0-bb25-522154013165")
+
+tree_map = raster("tree_canopy_2010.tif")
+```
+
+```{r}
+plot(tree_map)
+```
+```{r}
+wgs84 = "+proj=longlat +datum=WGS84 +ellps=WGS84 +no_defs" # Just have this ready to copy/paste
+# Reproject
+tree_84 = projectRaster(tree_map, crs = wgs84, method = "bilinear")
+
+plot(tree_84)
 ```
 
