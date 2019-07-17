@@ -27,8 +27,10 @@ tree_map = raster("tree_canopy_2010.tif")
 ```
 
 ```{r}
-plot(tree_map)
+#plot(tree_map)
 ```
+
+
 ```{r}
 wgs84 = "+proj=longlat +datum=WGS84 +ellps=WGS84 +no_defs" # Just have this ready to copy/paste
 # Reproject
