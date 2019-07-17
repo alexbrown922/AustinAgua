@@ -18,6 +18,8 @@ library(spatstat)
 library(maptools)
 library(sp)
 library(raster)
+library(beepr)
+library(RColorBrewer)
 ```
 
 ```{r}
@@ -27,13 +29,29 @@ tree_map = raster("tree_canopy_2010.tif")
 ```
 
 ```{r}
-plot(tree_map)
-```
-```{r}
-wgs84 = "+proj=longlat +datum=WGS84 +ellps=WGS84 +no_defs" # Just have this ready to copy/paste
-# Reproject
-tree_84 = projectRaster(tree_map, crs = wgs84, method = "bilinear")
+#plot(tree_map)
+tree_prioritization_uhi = tree_prioritization %>% 
+  dplyr::select(uhi)
+#tree_prior_r =raster(tree_prioritization_uhi, vals = tree_prioritization$uhi)
 
-plot(tree_84)
+beep(3)
 ```
+
+
+
+```{r}
+#leaflet(tree_prioritization_uhi) %>% #need to change the coordinate reference system to match
+ # addPolygons()
+
+uhi_plot = ggplot(tree_prioritization_uhi)+
+  geom_sf(aes(fill = uhi))+
+  scale_fill_gradient(low = "oldlace", high = "red4")+
+  theme_minimal()+
+  coord_sf(datum=NA)+
+  labs(x = "", y = "", title = "Measured Urban Heat Island")
+
+uhi_plot
+
+```
+
 
