@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 
-```{r}
+```{r, include = FALSE}
 library(tidyverse)
 library(sf)
 library(leaflet)
@@ -18,26 +18,37 @@ library(spatstat)
 library(maptools)
 library(sp)
 library(raster)
-library(beepr)
+#library(beepr)
 library(RColorBrewer)
 ```
 
-```{r}
-tree_prioritization <- st_read(dsn = ".", layer = "geo_export_2e82f388-c013-45a0-bb25-522154013165")
+```{r, include = FALSE}
+tree_prioritization <- st_read(dsn = ".", layer = "geo_export_2e82f388-c013-45a0-bb25-522154013165") %>% 
+   st_transform(crs = 4326)
 
-tree_map = raster("tree_canopy_2010.tif")
+tree_map = raster("tree_canopy_2010.tif") 
 
-tree_map_shape = st_read(dsn = ".", layer = "croppedconvertedtrees")
+tree_map_shape = st_read(dsn = ".", layer = "vectorizedtrees") %>% 
+   st_transform(crs = 4326)
+
+trees_only = tree_map_shape %>% 
+  filter(DN !=0) %>% 
+  select(DN)
+
+plot(trees_only)
 ```
 
-```{r}
+
+```{r, include=FALSE}
 #plot(tree_map)
 
 tree_prioritization_uhi = tree_prioritization %>% 
-  dplyr::select(uhi)
+  dplyr::select(uhi) %>% 
+  mutate(census_id = 1:200) %>% 
+  mutate(treecount = freq)
 #tree_prior_r =raster(tree_prioritization_uhi, vals = tree_prioritization$uhi)
 
-beep(3)
+#beep(3)
 ```
 
 
@@ -48,13 +59,56 @@ beep(3)
 
 uhi_plot = ggplot(tree_prioritization_uhi)+
   geom_sf(aes(fill = uhi))+
-  scale_fill_gradient(low = "oldlace", high = "red4")+
+  scale_fill_gradient("Comparitive Intensity", low = "oldlace", high = "red4")+
   theme_minimal()+
   coord_sf(datum=NA)+
-  labs(x = "", y = "", title = "Measured Urban Heat Island")
+  labs(x = "", y = "", title = "Comparitive Urban Heat Island of Census \nTracks Based off Land Surface Temperature")
 
 uhi_plot
 
+tmap_mode("view")
+tm_basemap("Esri.WorldImagery")+
+  tm_shape(tree_prioritization_uhi)+
+  tm_fill("uhi", low = "oldlace", high = "red4", alpha = 0.7)+
+  tm_shape(tree_map_shape)#+
+  #tm_dots("DN", palette = "darkgreen")
 ```
 
+Correlation
+```{r}
+res = over(as_Spatial(trees_only), as_Spatial(tree_prioritization_uhi)) 
+census_count = table(res$census_id)
+
+cc_df = as.data.frame(census_count) %>% 
+  mutate(census_id = as.integer(Var1))
+
+tree_uhi = full_join(cc_df, tree_prioritization_uhi)
+freq = tree_uhi$Freq
+```
+
+
+```{r}
+
+
+tree_plot = ggplot(tree_prioritization_uhi)+
+  geom_sf(aes(fill = treecount))+
+  scale_fill_gradient("Canopy Cover", low = "lightyellow", high = "darkgreen")+
+  theme_minimal()+
+  coord_sf(datum=NA)+
+  labs(x = "", y = "", title = "Tree Canopy Cover By Census Track")
+
+tree_plot
+
+
+
+```
+
+```{r}
+uhi_regression = lm(uhi~treecount, data = tree_prioritization_uhi)
+uhi_regression
+
+ggplot(tree_prioritization_uhi)+
+  geom_point(aes(x = treecount,y=uhi))
+
+```
 
