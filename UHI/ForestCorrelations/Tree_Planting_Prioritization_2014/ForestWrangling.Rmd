@@ -26,11 +26,13 @@ library(RColorBrewer)
 tree_prioritization <- st_read(dsn = ".", layer = "geo_export_2e82f388-c013-45a0-bb25-522154013165")
 
 tree_map = raster("tree_canopy_2010.tif")
+
+tree_map_shape = st_read(dsn = ".", layer = "croppedconvertedtrees")
 ```
 
 ```{r}
 #plot(tree_map)
-<<<<<<< HEAD
+
 tree_prioritization_uhi = tree_prioritization %>% 
   dplyr::select(uhi)
 #tree_prior_r =raster(tree_prioritization_uhi, vals = tree_prioritization$uhi)
@@ -40,11 +42,6 @@ beep(3)
 
 
 
-=======
-```
-
-
->>>>>>> 6a820fafc0e81f8c7da998a8450828b9411bcb6c
 ```{r}
 #leaflet(tree_prioritization_uhi) %>% #need to change the coordinate reference system to match
  # addPolygons()
