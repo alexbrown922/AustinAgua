@@ -1,0 +1,24 @@
+---
+title: "Finding Waller 3"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include = FALSE, comment=" "}
+library(tidyverse)
+library(sf)
+library(leaflet)
+library(tmap)
+library(spatstat)
+library(maptools)
+library(sp)
+library(raster)
+#library(beepr)
+library(RColorBrewer)
+library(stargazer)
+
+```
+
