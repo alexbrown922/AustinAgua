@@ -109,8 +109,8 @@ tree_plot
 ```
 
 ```{r, echo=FALSE, comment=" "}
-uhi_regress = lm(uhi~tree_intensity, data = tree_count_only)
-summary(uhi_regress)
+#uhi_regress = lm(uhi~tree_intensity, data = tree_count_only)
+#summary(uhi_regress)
 
 ggplot(tree_count_only)+
   geom_point(aes(x = tree_intensity,y=uhi))+
