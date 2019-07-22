@@ -86,38 +86,40 @@ uhi_plot
 
 ```{r, include=FALSE}
 tree_count = st_read(dsn = ".", layer = "countingtrees") %>% 
-   st_transform(crs = 4326)
+   st_transform(crs = 4326)%>% 
+  mutate(tree_intensity = tree_sum/shape_area)
 
 tree_count_only = tree_count %>% 
-  dplyr::select(fid, uhi, tree_numbe, tree_sum) %>% 
-  as.data.frame()
+  dplyr::select(fid, uhi, tree_numbe, tree_sum, shape_area, tree_intensity) %>% 
+  as.data.frame() 
 ```
 
 
 
 ```{r, echo=FALSE}
 tree_plot = ggplot(tree_count)+
-  geom_sf(aes(fill = tree_numbe))+
-  scale_fill_gradient("Simulated Trees", low = "lightyellow", high = "darkgreen")+
+  geom_sf(aes(fill = tree_intensity))+
+  scale_fill_gradient("Simulated Canopy Intensity", low = "lightyellow", high = "darkgreen", breaks=c(0,9.818678e-07),labels=c("Low","High"))+
   theme_minimal()+
   coord_sf(datum=NA)+
-  labs(x = "", y = "", title = "Simulated Tree Canopy By Census Track")
+  labs(x = "", y = "", title = "Simulated Tree Intensity By Census Tract")
 
 tree_plot
 
 ```
 
 ```{r, echo=FALSE, comment=" "}
-uhi_regress = lm(uhi~tree_numbe, data = tree_count_only)
-#summary(uhi_regress)
+uhi_regress = lm(uhi~tree_intensity, data = tree_count_only)
+summary(uhi_regress)
 
 ggplot(tree_count_only)+
-  geom_point(aes(x = tree_numbe,y=uhi))+
+  geom_point(aes(x = tree_intensity,y=uhi))+
   theme_classic()+
-  labs(title = "Relationship Between Urban Heat Island and Simulated \nTree Canopy by Austin Census Tract", y = "Comparitive Land Surface Temperature Intensity", x = "Simulated Tree Count")+
-  geom_smooth(method = "lm", aes(x = tree_numbe,y=uhi))+
-  geom_text(x = 775, y = 0.58, aes(label = "*** R Squared = 0.083"))
+  labs(title = "Relationship Between Urban Heat Island and Simulated \nTree Canopy by Austin Census Tract", y = "Comparitive Land Surface Temperature Intensity", x = "Simulated Tree Intensity")+
+  geom_smooth(method = "lm", aes(x = tree_intensity,y=uhi))+
+  geom_text(x = 7.5e-07, y = 0.25, aes(label = "*** R Squared = 0.28"))
 
 ```
+
 
 
