@@ -63,13 +63,17 @@ tree_prioritization_uhi = tree_prioritization %>%
 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
+air_palette = c("orchid4","cornflowerblue")
+
 tmap_mode("view")
 tm_basemap("Esri.WorldImagery")+
   tm_shape(tree_prioritization_uhi)+
   tm_fill("Intensity", low = "oldlace", high = "red4", alpha = 0.7)+
   tm_legend(title ="Relative Urban Heat Island Intensity by Census Tract")+
   tm_shape(Wallercreek)+
-  tm_borders(col = "black", lwd = 1)
+  tm_borders(col = "black", lwd = 1)+
+  tm_shape(tree_prioritization)+
+  tm_fill("air_qual", palette = air_palette, alpha = 0.7)
  
  # tm_shape(tree_map_shape)#+
   #tm_dots("DN", palette = "darkgreen")
@@ -84,7 +88,7 @@ uhi_plot = ggplot(tree_prioritization_uhi)+
   geom_sf(aes(fill = uhi))+
   scale_fill_gradient("Comparitive Intensity", low = "oldlace", high = "red4")+
   
-  labs(x = "", y = "", title = "Comparitive Urban Heat Island of Census \nTracks Based off Land Surface Temperature")+
+  labs(x = "", y = "", title = "Comparitive Urban Heat Island of Census \nTracts Based off Land Surface Temperature")+
   geom_sf(data = Wallercreek, 
           fill = "NA", 
           color = "black", 
@@ -98,17 +102,17 @@ uhi_plot
 
 mapRange <- c(range(st_coordinates(Wallercreek)[,1]),range(st_coordinates(Wallercreek)[,2]))
 
-uhi_plot_waller = ggplot(Wallercensus)+
+uhi_plot_waller = ggplot(tree_prioritization_uhi)+
   geom_sf(aes(fill = uhi))+
   scale_fill_gradient("Comparitive Intensity", low = "oldlace", high = "red4")+
   #coord_sf(xlim = mapRange[c(1:2)], ylim = mapRange[c(3:4)])+
-  labs(x = "", y = "", title = "Comparitive Urban Heat Island of Census \nTracks Based off Land Surface Temperature")+
+  labs(x = "", y = "", title = "Comparitive Urban Heat Island of Census \nTracts Based off Land Surface Temperature")+
   geom_sf(data = Wallercreek, 
           fill = "NA", 
           color = "black", 
           size = 1)+
   theme_minimal()+
-  coord_sf(datum=NA)
+  coord_sf(datum=NA,xlim = mapRange[c(1:2)], ylim = mapRange[c(3:4)])
 
 uhi_plot_waller 
 ```
