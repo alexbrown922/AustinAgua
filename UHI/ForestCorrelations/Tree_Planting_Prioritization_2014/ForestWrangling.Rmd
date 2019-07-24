@@ -168,7 +168,8 @@ ggplot(tree_count_only)+
   theme_classic()+
   labs(title = "Relationship Between Urban Heat Island and Simulated \nTree Canopy by Austin Census Tract", y = "Comparitive Land Surface Temperature Intensity", x = "Simulated Tree Intensity")+
   geom_smooth(method = "lm", aes(x = tree_intensity,y=uhi))+
-  geom_text(x = 7.5e-07, y = 0.25, aes(label = "*** R Squared = 0.28"))
+  geom_text(x = 7.5e-07, y = 0.25, aes(label = "*** R Squared = 0.28"))+
+  scale_x_continuous()
 
 ```
 
