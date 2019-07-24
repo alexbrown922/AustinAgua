@@ -1,0 +1,69 @@
+---
+title: "UHI Census Factors"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r, include = FALSE, comment=" "}
+library(tidyverse)
+library(sf)
+library(leaflet)
+library(tmap)
+library(spatstat)
+library(maptools)
+library(sp)
+library(raster)
+#library(beepr)
+library(RColorBrewer)
+library(stargazer)
+library(janitor)
+
+```
+
+```{r}
+census_tree = st_read(dsn = ".", layer = "countingtrees") %>%
+  st_transform(crs = 4326) %>% 
+  mutate(geoid10 = as.numeric(geoid10))
+
+social_demo = read_csv("censustractdemos.csv") %>% 
+  mutate(geoid10 = Id2) %>% 
+  clean_names() %>% 
+  mutate(median_income = as.numeric(median_income))
+```
+
+
+```{r}
+census_social = full_join(census_tree, social_demo, by = "geoid10")
+
+```
+
+
+```{r}
+
+Wallercreek <- st_read(dsn = ".", layer = "WallerCrk") %>% 
+   st_transform(crs = 4326) 
+
+mapRange <- c(range(st_coordinates(Wallercreek)[,1]),range(st_coordinates(Wallercreek)[,2]))
+
+```
+
+```{r}
+income_plot_waller = ggplot(census_social)+
+  geom_sf(aes(fill = median_income))+
+  scale_fill_gradient("Income", low = "oldlace", high = "red4")+
+  #coord_sf(xlim = mapRange[c(1:2)], ylim = mapRange[c(3:4)])+
+  labs(x = "", y = "", title = "Comparitive Urban Heat Island of Census \nTracts Based off Land Surface Temperature")+
+  geom_sf(data = Wallercreek, 
+          fill = "NA", 
+          color = "black", 
+          size = 1)+
+  theme_minimal()#+
+ # coord_sf(datum=NA,xlim = mapRange[c(1:2)], ylim = mapRange[c(3:4)])
+
+income_plot_waller 
+```
+
