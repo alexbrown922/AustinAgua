@@ -21,6 +21,7 @@ library(raster)
 library(RColorBrewer)
 library(stargazer)
 library(janitor)
+library(rgdal)
 
 ```
 
@@ -104,4 +105,6 @@ ggplot(census_social)+
   geom_text(x = 0.10, y = 50000, aes(label = "*** R Squared = 0.25"))+
   scale_x_continuous()
 ```
+
+
 
