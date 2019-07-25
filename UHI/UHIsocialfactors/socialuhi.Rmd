@@ -36,9 +36,20 @@ social_demo = read_csv("censustractdemos.csv") %>%
 ```
 
 
-```{r}
-census_social = full_join(census_tree, social_demo, by = "geoid10")
+```{r, include=FALSE}
+tree_raw = read_csv("tree_planting_prioritization.csv") %>% 
+  clean_names()
 
+social_prior = full_join(tree_raw, social_demo, by = "geoid10") %>% 
+  filter(!is.na(id2)) %>% 
+  filter(!is.na(shape_area)) %>% 
+  dplyr::select(-the_geom)
+
+census_social = full_join(census_tree, social_prior, by="shape_area") %>% 
+  dplyr::select(geoid10.y, air_qual.x, critical_p.x, district.x, ej.x, health.x, preserve.x, replenish.x, score.x, shape_area, uhi.x, water_qual.x, tree_sum, total_population, median_income, commuting, x62andover, white, black, native_am, asian, pacific_islander, latinx) %>% 
+  filter(!is.na(geoid10.y)) %>% 
+  filter(!is.na(uhi.x)) %>% 
+  mutate(tree_intensity = tree_sum/shape_area)
 ```
 
 
@@ -54,16 +65,43 @@ mapRange <- c(range(st_coordinates(Wallercreek)[,1]),range(st_coordinates(Waller
 ```{r}
 income_plot_waller = ggplot(census_social)+
   geom_sf(aes(fill = median_income))+
-  scale_fill_gradient("Income", low = "oldlace", high = "red4")+
+  scale_fill_gradient("Income", low = "lightcyan", high = "orchid4")+
   #coord_sf(xlim = mapRange[c(1:2)], ylim = mapRange[c(3:4)])+
-  labs(x = "", y = "", title = "Comparitive Urban Heat Island of Census \nTracts Based off Land Surface Temperature")+
+  labs(x = "", y = "", title = "Median Income in 2017")+
   geom_sf(data = Wallercreek, 
           fill = "NA", 
           color = "black", 
           size = 1)+
-  theme_minimal()#+
- # coord_sf(datum=NA,xlim = mapRange[c(1:2)], ylim = mapRange[c(3:4)])
+  theme_minimal()+
+  #coord_sf(datum=NA,xlim = mapRange[c(1:2)], ylim = mapRange[c(3:4)])
+  coord_sf(datum=NA)
 
 income_plot_waller 
+```
+
+```{r}
+income_regress = lm(median_income~tree_intensity, data = census_social)
+summary(income_regress)
+
+ggplot(census_social)+
+  geom_point(aes(x = tree_intensity,y=median_income))+
+  theme_classic()+
+  labs(title = "Relationship Between Median Income and Simulated \nTree Canopy by Austin Census Tract", y = "Median Income in 2017", x = "Simulated Tree Intensity")+
+  geom_smooth(method = "lm", aes(x = tree_intensity,y=median_income))+
+  geom_text(x = 1.0e-07, y = 150000, aes(label = "*** R Squared = 0.30"))+
+  scale_x_continuous()
+
+```
+```{r}
+income_uhi_regress = lm(median_income~uhi.x, data = census_social)
+summary(income_uhi_regress)
+
+ggplot(census_social)+
+  geom_point(aes(x = uhi.x,y=median_income))+
+  theme_classic()+
+  labs(title = "Relationship Between Median Income and Land \nSurface Temperature by Austin Census Tract", y = "Median Income in 2017", x = "Comparative Land Surface Temperature")+
+  geom_smooth(method = "lm", aes(x = uhi.x,y=median_income))+
+  geom_text(x = 0.10, y = 50000, aes(label = "*** R Squared = 0.25"))+
+  scale_x_continuous()
 ```
 
