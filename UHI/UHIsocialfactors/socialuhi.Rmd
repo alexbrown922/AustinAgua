@@ -107,4 +107,40 @@ ggplot(census_social)+
 ```
 
 
+```{r}
+racial_makeup = census_social %>% 
+  mutate(white_p = white/total_population) %>% 
+  mutate(black_p = black/total_population) %>% 
+  mutate(latinx_p = latinx/total_population) %>% 
+  mutate(native_am_p = native_am/total_population) %>% 
+  mutate(asian_p = asian/total_population) %>% 
+  mutate(pacific_islander_p = pacific_islander/total_population) %>% 
+  mutate(nonwhite = black_p+asian_p+latinx_p+pacific_islander_p+native_am_p)
+```
+
+```{r}
+race_uhi_regress = lm(nonwhite~uhi.x, data = racial_makeup)
+summary(race_uhi_regress)
+
+ggplot(racial_makeup)+
+  geom_point(aes(x = uhi.x,y=nonwhite))+
+  theme_classic()+
+  labs(title = "Relationship Between Proportion Non White and Land \nSurface Temperature by Austin Census Tract", y = "Proportion Non White in 2017", x = "Comparative Land Surface Temperature")+
+  geom_smooth(method = "lm", aes(x = uhi.x,y=nonwhite))+
+  geom_text(x = 0.10, y = 0.2, aes(label = "*** R Squared = 0.11"))+
+  scale_x_continuous()
+```
+
+```{r}
+race_regress = lm(nonwhite~tree_intensity, data = racial_makeup)
+summary(race_regress)
+
+ggplot(racial_makeup)+
+  geom_point(aes(x = tree_intensity,y=nonwhite))+
+  theme_classic()+
+  labs(title = "Relationship Between Proportion Non White and Simulated \nTree Canopy by Austin Census Tract", y = "Proportion Non White in 2017", x = "Simulated Tree Intensity")+
+  geom_smooth(method = "lm", aes(x = tree_intensity,y=nonwhite))+
+  geom_text(x = 1.0e-07, y = 0.25, aes(label = "*** R Squared = 0.23"))+
+  scale_x_continuous()
+```
 
