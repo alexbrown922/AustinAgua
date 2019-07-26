@@ -1,5 +1,5 @@
 ---
-title: "UHI Census Factors"
+title: "Urban Heat Island, Tree Cover, and the 2017 American Community Survey"
 output: html_document
 ---
 
@@ -25,7 +25,7 @@ library(rgdal)
 
 ```
 
-```{r}
+```{r, include = FALSE}
 census_tree = st_read(dsn = ".", layer = "countingtrees") %>%
   st_transform(crs = 4326) %>% 
   mutate(geoid10 = as.numeric(geoid10))
@@ -54,7 +54,7 @@ census_social = full_join(census_tree, social_prior, by="shape_area") %>%
 ```
 
 
-```{r}
+```{r, include = FALSE}
 
 Wallercreek <- st_read(dsn = ".", layer = "WallerCrk") %>% 
    st_transform(crs = 4326) 
@@ -63,7 +63,10 @@ mapRange <- c(range(st_coordinates(Wallercreek)[,1]),range(st_coordinates(Waller
 
 ```
 
-```{r}
+Several census tracts were missing from the American Community Survey data download. I am sure this data exists, missing tracts will need to be individually searched for and added to the dataset. 
+
+
+```{r, echo=FALSE, warning=FALSE}
 income_plot_waller = ggplot(census_social)+
   geom_sf(aes(fill = median_income))+
   scale_fill_gradient("Income", low = "lightcyan", high = "orchid4")+
@@ -74,15 +77,16 @@ income_plot_waller = ggplot(census_social)+
           color = "black", 
           size = 1)+
   theme_minimal()+
-  #coord_sf(datum=NA,xlim = mapRange[c(1:2)], ylim = mapRange[c(3:4)])
-  coord_sf(datum=NA)
+  coord_sf(datum=NA,xlim = mapRange[c(1:2)], ylim = mapRange[c(3:4)])
+  #coord_sf(datum=NA)
 
 income_plot_waller 
 ```
 
-```{r}
-income_regress = lm(median_income~tree_intensity, data = census_social)
-summary(income_regress)
+
+```{r, echo=FALSE, warning=FALSE}
+#income_regress = lm(median_income~tree_intensity, data = census_social)
+#summary(income_regress)
 
 ggplot(census_social)+
   geom_point(aes(x = tree_intensity,y=median_income))+
@@ -93,9 +97,9 @@ ggplot(census_social)+
   scale_x_continuous()
 
 ```
-```{r}
-income_uhi_regress = lm(median_income~uhi.x, data = census_social)
-summary(income_uhi_regress)
+```{r, echo=FALSE, warning=FALSE}
+#income_uhi_regress = lm(median_income~uhi.x, data = census_social)
+#summary(income_uhi_regress)
 
 ggplot(census_social)+
   geom_point(aes(x = uhi.x,y=median_income))+
@@ -107,7 +111,7 @@ ggplot(census_social)+
 ```
 
 
-```{r}
+```{r,include = FALSE}
 racial_makeup = census_social %>% 
   mutate(white_p = white/total_population) %>% 
   mutate(black_p = black/total_population) %>% 
@@ -118,29 +122,48 @@ racial_makeup = census_social %>%
   mutate(nonwhite = black_p+asian_p+latinx_p+pacific_islander_p+native_am_p)
 ```
 
-```{r}
-race_uhi_regress = lm(nonwhite~uhi.x, data = racial_makeup)
-summary(race_uhi_regress)
+
+```{r, echo=FALSE,warning=FALSE}
+race_plot_waller = ggplot(racial_makeup)+
+  geom_sf(aes(fill = nonwhite))+
+  scale_fill_gradient("nonwhite", low = "white", high = "chocolate")+
+  #coord_sf(xlim = mapRange[c(1:2)], ylim = mapRange[c(3:4)])+
+  labs(x = "", y = "", title = "Proportion Non White in 2017")+
+  geom_sf(data = Wallercreek, 
+          fill = "NA", 
+          color = "black", 
+          size = 1)+
+  theme_minimal()+
+  coord_sf(datum=NA,xlim = mapRange[c(1:2)], ylim = mapRange[c(3:4)])
+  #coord_sf(datum=NA)
+
+race_plot_waller
+```
+
+
+```{r, echo=FALSE, warning=FALSE}
+#race_uhi_regress = lm(nonwhite~uhi.x, data = racial_makeup)
+#summary(race_uhi_regress)
 
 ggplot(racial_makeup)+
   geom_point(aes(x = uhi.x,y=nonwhite))+
   theme_classic()+
   labs(title = "Relationship Between Proportion Non White and Land \nSurface Temperature by Austin Census Tract", y = "Proportion Non White in 2017", x = "Comparative Land Surface Temperature")+
   geom_smooth(method = "lm", aes(x = uhi.x,y=nonwhite))+
-  geom_text(x = 0.10, y = 0.2, aes(label = "*** R Squared = 0.11"))+
+  geom_text(x = 0.10, y = 0.4, aes(label = "*** R Squared = 0.11"))+
   scale_x_continuous()
 ```
 
-```{r}
-race_regress = lm(nonwhite~tree_intensity, data = racial_makeup)
-summary(race_regress)
+```{r, echo=FALSE, warning=FALSE}
+#race_regress = lm(nonwhite~tree_intensity, data = racial_makeup)
+#summary(race_regress)
 
 ggplot(racial_makeup)+
   geom_point(aes(x = tree_intensity,y=nonwhite))+
   theme_classic()+
   labs(title = "Relationship Between Proportion Non White and Simulated \nTree Canopy by Austin Census Tract", y = "Proportion Non White in 2017", x = "Simulated Tree Intensity")+
   geom_smooth(method = "lm", aes(x = tree_intensity,y=nonwhite))+
-  geom_text(x = 1.0e-07, y = 0.25, aes(label = "*** R Squared = 0.23"))+
+  geom_text(x = 1.0e-07, y = 0.24, aes(label = "*** R Squared = 0.23"))+
   scale_x_continuous()
 ```
 
