@@ -28,7 +28,8 @@ library(rgdal)
 ```{r, include = FALSE}
 census_tree = st_read(dsn = ".", layer = "countingtrees") %>%
   st_transform(crs = 4326) %>% 
-  mutate(geoid10 = as.numeric(geoid10))
+  mutate(geoid = as.numeric(geoid10)) %>% 
+  dplyr::select(-geoid10)
 
 social_demo = read_csv("censustractdemos.csv") %>% 
   mutate(geoid10 = Id2) %>% 
@@ -41,16 +42,18 @@ social_demo = read_csv("censustractdemos.csv") %>%
 tree_raw = read_csv("tree_planting_prioritization.csv") %>% 
   clean_names()
 
+tract_matching = full_join(census_tree, tree_raw, by="health")
+
 social_prior = full_join(tree_raw, social_demo, by = "geoid10") %>% 
   filter(!is.na(id2)) %>% 
-  filter(!is.na(shape_area)) %>% 
-  dplyr::select(-the_geom)
+  filter(!is.na(shape_area))%>% 
+  dplyr::select(-the_geom) 
 
-census_social = full_join(census_tree, social_prior, by="shape_area") %>% 
-  dplyr::select(geoid10.y, air_qual.x, critical_p.x, district.x, ej.x, health.x, preserve.x, replenish.x, score.x, shape_area, uhi.x, water_qual.x, tree_sum, total_population, median_income, commuting, x62andover, white, black, native_am, asian, pacific_islander, latinx) %>% 
-  filter(!is.na(geoid10.y)) %>% 
+census_social = full_join(census_tree, social_prior, by="health") %>% 
+  dplyr::select(geoid10, air_qual.x, critical_p.x, district.x, ej.x, health, preserve.x, replenish.x, score.x, shape_area.x, uhi.x, water_qual.x, tree_sum, total_population, median_income, commuting, x62andover, white, black, native_am, asian, pacific_islander, latinx) %>% 
+  #filter(!is.na(geoid10.y)) %>% 
   filter(!is.na(uhi.x)) %>% 
-  mutate(tree_intensity = tree_sum/shape_area)
+  mutate(tree_intensity = tree_sum/shape_area.x)
 ```
 
 
@@ -62,6 +65,18 @@ Wallercreek <- st_read(dsn = ".", layer = "WallerCrk") %>%
 mapRange <- c(range(st_coordinates(Wallercreek)[,1]),range(st_coordinates(Wallercreek)[,2]))
 
 ```
+
+
+```{r, include=FALSE}
+#tmap_mode("view")
+#tm_basemap("OpenStreetMap.Mapnik")+
+#  tm_shape(census_social)+
+#  tm_fill("median_income", low = "oldlace", high = "red4", alpha = 0.7)+
+#  tm_legend(title ="Median Income by Census Tract")+
+#  tm_shape(Wallercreek)+
+#  tm_borders(col = "black", lwd = 1)
+```
+
 
 Several census tracts were missing from the American Community Survey data download. I am sure this data exists, missing tracts will need to be individually searched for and added to the dataset. 
 
