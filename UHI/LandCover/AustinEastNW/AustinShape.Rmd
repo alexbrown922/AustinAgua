@@ -1,0 +1,45 @@
+---
+title: "AustinLandCover"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include=FALSE}
+library(tidyverse)
+library(sf)
+library(leaflet)
+library(tmap)
+library(spatstat)
+library(maptools)
+library(sp)
+library(raster)
+library(beepr)
+library(RColorBrewer)
+library(stargazer)
+```
+
+```{r}
+landcoverNW = st_read(dsn = ".", layer = "AustinEastNW") %>% 
+   st_transform(crs = 4326)
+
+landcoverWaller = st_read(dsn = ".", layer = "")
+beep(8)
+```
+
+```{r}
+ggplot(landcoverNW)+
+  geom_bar(aes(x = FEATURE))
+```
+
+```{r}
+land_sum = landcoverNW %>% 
+  group_by(FEATURE) %>% 
+  summarise(sum_area = sum(Shape_Area))
+land_sum
+beep(6)
+```
+
+
