@@ -22,20 +22,20 @@ library(stargazer)
 ```
 
 ```{r}
-landcoverNW = st_read(dsn = ".", layer = "AustinEastNW") %>% 
-   st_transform(crs = 4326)
+#landcoverNW = st_read(dsn = ".", layer = "AustinEastNW") %>% 
+ #  st_transform(crs = 4326)
 
-landcoverWaller = st_read(dsn = ".", layer = "")
+landcoverwaller = st_read(dsn = ".", layer = "coverwaller3")
 beep(8)
 ```
 
 ```{r}
-ggplot(landcoverNW)+
+ggplot(landcoverwaller)+
   geom_bar(aes(x = FEATURE))
 ```
 
 ```{r}
-land_sum = landcoverNW %>% 
+land_sum = landcoverwaller %>% 
   group_by(FEATURE) %>% 
   summarise(sum_area = sum(Shape_Area))
 land_sum
