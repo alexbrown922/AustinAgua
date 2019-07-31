@@ -31,7 +31,8 @@ beep(8)
 
 ```{r}
 ggplot(landcoverwaller)+
-  geom_bar(aes(x = FEATURE))
+  geom_bar(aes(x = FEATURE))+
+  theme_classic()
 ```
 
 ```{r}
@@ -42,4 +43,17 @@ land_sum
 beep(6)
 ```
 
+
+```{r}
+cover_plot = ggplot(landcoverwaller)+
+  geom_sf(aes(fill = FEATURE))+
+  #scale_fill_gradient("Comparitive Intensity", low = "oldlace", high = "red4")+
+  labs(x = "", y = "", title = "Land Cover Features")+
+  theme_minimal()+
+  coord_sf(datum=NA)
+
+cover_plot
+beep()
+
+```
 
