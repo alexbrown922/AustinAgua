@@ -44,8 +44,14 @@ beep(6)
 ```
 
 
+
 ```{r}
-cover_plot = ggplot(landcoverwaller)+
+
+pavedwaller = landcoverwaller %>% 
+  filter(FEATURE == "Structure"| FEATURE == "Paved"| FEATURE == "Sidewalk"| FEATURE == "Paved Parking")
+#(FEATURE == "Remaining Pervious Area"| 
+
+cover_plot = ggplot(pavedwaller)+
   geom_sf(aes(fill = FEATURE))+
   #scale_fill_manual(palette =c("yellow","purple"))+
   labs(x = "", y = "", title = "Land Cover Features")+
@@ -55,5 +61,19 @@ cover_plot = ggplot(landcoverwaller)+
 cover_plot 
 beep()
 
+```
+
+```{r}
+
+waller3outline = st_read(dsn = ".", layer = "WLR3") %>% 
+  st_transform(crs = 4326)
+
+tmap_mode(mode = "view")
+
+tm_basemap("Esri.WorldImagery")+
+  tm_shape(waller3outline)+
+  tm_borders(col = "black", lwd = 3)+
+  tm_legend(title ="Land Cover Fractions")
+ 
 ```
 
