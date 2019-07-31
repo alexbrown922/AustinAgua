@@ -47,12 +47,12 @@ beep(6)
 ```{r}
 cover_plot = ggplot(landcoverwaller)+
   geom_sf(aes(fill = FEATURE))+
-  #scale_fill_gradient("Comparitive Intensity", low = "oldlace", high = "red4")+
+  #scale_fill_manual(palette =c("yellow","purple"))+
   labs(x = "", y = "", title = "Land Cover Features")+
   theme_minimal()+
   coord_sf(datum=NA)
-
-cover_plot
+  
+cover_plot 
 beep()
 
 ```
