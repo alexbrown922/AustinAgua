@@ -186,7 +186,7 @@ tree_value = tree_count %>%
 
 ```{r}
 
-tree_plot = ggplot(tree_value)+
+tree_plot_value = ggplot(tree_value)+
   geom_sf(aes(fill = value_disc))+
   scale_fill_gradient2("Value Discrepency",low = "firebrick4", mid = "white", high = "deepskyblue4", breaks=c(min(tree_value$value_disc),0,max(tree_value$value_disc)),labels=c("-$10,000","$0","$14,000"))+
   #scale_colour_brewer(palette = "PiYG")+
@@ -197,6 +197,31 @@ tree_plot = ggplot(tree_value)+
           size = 1)+
   theme_minimal()+
   coord_sf(datum=NA)
-tree_plot
+tree_plot_value
+```
+
+```{r}
+croppedcensus = st_read(dsn = ".", layer = "treewallerclipped") %>% 
+   st_transform(crs = 4326)
+tree_value_waller = croppedcensus %>%
+  mutate(tree_intensity = tree_sum/shape_area) %>% 
+  mutate(tree_disc=tree_intensity-avg_tree) %>% 
+  mutate(tree_disc_num = tree_disc*shape_area) %>% 
+  mutate(value_disc = tree_disc_num*value_per_tree)
+```
+
+```{r}
+tree_plot_waller_value = ggplot(tree_value_waller)+
+  geom_sf(aes(fill = value_disc))+
+  scale_fill_gradient2("Value Discrepency",low = "firebrick4", mid = "white", high = "deepskyblue4", breaks=c(min(tree_value_waller$value_disc),0,max(tree_value_waller$value_disc)),labels=c("-$400","$0","$250"))+
+  #scale_colour_brewer(palette = "PiYG")+
+  labs(x = "", y = "", title = "Tree Value Discrepency Based on Simulated Tree \nIntensity By Census Tract")+
+  geom_sf(data = Wallercreek, 
+          fill = "NA", 
+          color = "black", 
+          size = 1)+
+  theme_minimal()+
+  coord_sf(datum=NA)
+tree_plot_waller_value
 ```
 
