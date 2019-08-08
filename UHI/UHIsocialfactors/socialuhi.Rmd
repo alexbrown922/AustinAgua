@@ -1,8 +1,8 @@
 ---
 title: "Urban Heat Island, Tree Cover, and the 2017 American Community Survey"
 output:
-  html_document: default
   word_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -219,3 +219,11 @@ ggplot(racial_makeup)+
   scale_x_continuous()
 ```
 
+```{r}
+mult_uhi = lm(uhi.x~median_income+nonwhite+tree_intensity, data = racial_makeup)
+summary(mult_uhi)
+```
+
+```{r, results='asis'}
+stargazer(mult_uhi,  type = "html")
+```
