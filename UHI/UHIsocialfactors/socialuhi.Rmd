@@ -82,9 +82,9 @@ Several census tracts were missing from the American Community Survey data downl
 ```{r, echo=FALSE}
 income_plot = ggplot(census_social)+
   geom_sf(aes(fill = median_income))+
-  scale_fill_gradient("Income", low = "lightcyan", high = "orchid4")+
+  scale_fill_gradient("Income", low = "lightcyan", high = "orchid4", breaks=c(50000, 100000, 150000, 200000), labels=c("$50,000","$100,000","$150,000","$200,000"))+
   #coord_sf(xlim = mapRange[c(1:2)], ylim = mapRange[c(3:4)])+
-  labs(x = "", y = "", title = "Median Income in 2017")+
+  labs(x = "", y = "", title = "Median Income in the 2017 American \nCommunity Survey by Census Tract")+
   geom_sf(data = Wallercreek, 
           fill = "NA", 
           color = "black", 
@@ -102,7 +102,7 @@ income_plot_waller = ggplot(census_social)+
   geom_sf(aes(fill = median_income))+
   scale_fill_gradient("Income", low = "lightcyan", high = "orchid4")+
   #coord_sf(xlim = mapRange[c(1:2)], ylim = mapRange[c(3:4)])+
-  labs(x = "", y = "", title = "Median Income in 2017")+
+  labs(x = "", y = "", title = "Median Income in the 2017 American \nCommunity Survey by Census Tract")+
   geom_sf(data = Wallercreek, 
           fill = "NA", 
           color = "black", 
@@ -157,9 +157,9 @@ racial_makeup = census_social %>%
 ```{r, echo=FALSE,warning=FALSE}
 race_plot = ggplot(racial_makeup)+
   geom_sf(aes(fill = nonwhite))+
-  scale_fill_gradient("nonwhite", low = "white", high = "chocolate")+
+  scale_fill_gradient("Proportion Non White", low = "white", high = "chocolate")+
   #coord_sf(xlim = mapRange[c(1:2)], ylim = mapRange[c(3:4)])+
-  labs(x = "", y = "", title = "Proportion Non White in 2017")+
+  labs(x = "", y = "", title = "Proportion Non White in the 2017 American \nCommunity Survey by Census Tract")+
   geom_sf(data = Wallercreek, 
           fill = "NA", 
           color = "black", 
@@ -174,9 +174,9 @@ race_plot
 ```{r, echo=FALSE,warning=FALSE}
 race_plot_waller = ggplot(racial_makeup)+
   geom_sf(aes(fill = nonwhite))+
-  scale_fill_gradient("nonwhite", low = "white", high = "chocolate")+
+  scale_fill_gradient("Proportion Non White", low = "white", high = "chocolate")+
   #coord_sf(xlim = mapRange[c(1:2)], ylim = mapRange[c(3:4)])+
-  labs(x = "", y = "", title = "Proportion Non White in 2017")+
+  labs(x = "", y = "", title = "Proportion Non White in the 2017 American \nCommunity Survey by Census Tract")+
   geom_sf(data = Wallercreek, 
           fill = "NA", 
           color = "black", 
