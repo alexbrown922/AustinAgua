@@ -1,6 +1,8 @@
 ---
 title: "Urban Heat Island, Tree Cover, and the 2017 American Community Survey"
-output: html_document
+output:
+  html_document: default
+  word_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -100,7 +102,7 @@ income_plot
 ```{r, echo=FALSE, warning=FALSE}
 income_plot_waller = ggplot(census_social)+
   geom_sf(aes(fill = median_income))+
-  scale_fill_gradient("Income", low = "lightcyan", high = "orchid4")+
+  scale_fill_gradient("Income", low = "lightcyan", high = "orchid4", breaks=c(50000, 100000, 150000, 200000), labels=c("$50,000","$100,000","$150,000","$200,000"))+
   #coord_sf(xlim = mapRange[c(1:2)], ylim = mapRange[c(3:4)])+
   labs(x = "", y = "", title = "Median Income in the 2017 American \nCommunity Survey by Census Tract")+
   geom_sf(data = Wallercreek, 
@@ -125,7 +127,8 @@ ggplot(census_social)+
   labs(title = "Relationship Between Median Income and Simulated \nTree Canopy by Austin Census Tract", y = "Median Income in 2017", x = "Simulated Tree Intensity")+
   geom_smooth(method = "lm", aes(x = tree_intensity,y=median_income))+
   geom_text(x = 1.0e-07, y = 150000, aes(label = "*** R Squared = 0.30"))+
-  scale_x_continuous()
+  scale_x_continuous(breaks=c(min(census_social$tree_intensity), max(census_social$tree_intensity)), labels=c("Low","High"))+
+  scale_y_continuous(breaks=c(50000, 100000, 150000, 200000), labels=c("$50,000","$100,000","$150,000","$200,000"))
 
 ```
 ```{r, echo=FALSE, warning=FALSE}
@@ -138,7 +141,8 @@ ggplot(census_social)+
   labs(title = "Relationship Between Median Income and Land \nSurface Temperature by Austin Census Tract", y = "Median Income in 2017", x = "Comparative Land Surface Temperature")+
   geom_smooth(method = "lm", aes(x = uhi.x,y=median_income))+
   geom_text(x = 0.10, y = 50000, aes(label = "*** R Squared = 0.25"))+
-  scale_x_continuous()
+  scale_x_continuous()+
+  scale_y_continuous(breaks=c(50000, 100000, 150000, 200000), labels=c("$50,000","$100,000","$150,000","$200,000"))
 ```
 
 
