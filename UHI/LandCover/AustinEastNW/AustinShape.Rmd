@@ -71,7 +71,7 @@ waller3outline = st_read(dsn = ".", layer = "WLR3") %>%
   st_transform(crs = 4326)
 
 tmap_mode(mode = "view")
-tm_basemap("OpenStreetMap.Mapnik")+
+tm_basemap("Esri.WorldImagery")+
   tm_shape(waller3outline)+
   tm_borders(col = "black", lwd = 3)+
   tm_legend(title ="Land Cover Fractions")

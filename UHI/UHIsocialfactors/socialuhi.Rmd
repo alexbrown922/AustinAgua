@@ -216,7 +216,7 @@ ggplot(racial_makeup)+
   labs(title = "Relationship Between Proportion Non White and Simulated \nTree Canopy by Austin Census Tract", y = "Proportion Non White in 2017", x = "Simulated Tree Intensity")+
   geom_smooth(method = "lm", aes(x = tree_intensity,y=nonwhite))+
   geom_text(x = 1.0e-07, y = 0.24, aes(label = "*** R Squared = 0.23"))+
-  scale_x_continuous()
+  scale_x_continuous(breaks=c(min(census_social$tree_intensity), max(census_social$tree_intensity)), labels=c("Low","High"))
 ```
 
 ```{r}
