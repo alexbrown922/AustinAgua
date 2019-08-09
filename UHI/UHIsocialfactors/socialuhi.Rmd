@@ -132,8 +132,8 @@ ggplot(census_social)+
 
 ```
 ```{r, echo=FALSE, warning=FALSE}
-#income_uhi_regress = lm(median_income~uhi.x, data = census_social)
-#summary(income_uhi_regress)
+income_uhi_regress = lm(median_income~uhi.x, data = census_social)
+summary(income_uhi_regress)
 
 ggplot(census_social)+
   geom_point(aes(x = uhi.x,y=median_income))+
@@ -207,21 +207,25 @@ ggplot(racial_makeup)+
 ```
 
 ```{r, echo=FALSE, warning=FALSE}
-#race_regress = lm(nonwhite~tree_intensity, data = racial_makeup)
-#summary(race_regress)
+race_regress = lm(nonwhite~tree_intensity, data = racial_makeup)
+summary(race_regress)
 
 ggplot(racial_makeup)+
   geom_point(aes(x = tree_intensity,y=nonwhite))+
   theme_classic()+
   labs(title = "Relationship Between Proportion Non White and Simulated \nTree Canopy by Austin Census Tract", y = "Proportion Non White in 2017", x = "Simulated Tree Intensity")+
   geom_smooth(method = "lm", aes(x = tree_intensity,y=nonwhite))+
-  geom_text(x = 1.0e-07, y = 0.24, aes(label = "*** R Squared = 0.23"))+
+  geom_text(x = 1.0e-07, y = 0.24, aes(label = "*** R Squared = 0.25"))+
   scale_x_continuous(breaks=c(min(census_social$tree_intensity), max(census_social$tree_intensity)), labels=c("Low","High"))
 ```
 
 ```{r}
 mult_uhi = lm(uhi.x~median_income+nonwhite+tree_intensity, data = racial_makeup)
 summary(mult_uhi)
+
+mult_ti=lm(tree_intensity~median_income+nonwhite, data = racial_makeup)
+summary(mult_ti)
+
 ```
 
 ```{r, results='asis'}
