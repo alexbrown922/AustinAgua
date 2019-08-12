@@ -48,20 +48,20 @@ beep(6)
 ```{r}
 
 pavedwaller = landcoverwaller %>% 
- # filter(FEATURE == "Structure"| FEATURE == "Paved"| FEATURE == "Sidewalk"| FEATURE == "Paved Parking")
-filter(FEATURE == "Remaining Pervious Area")
+filter(FEATURE == "Structure"| FEATURE == "Paved"| FEATURE == "Sidewalk"| FEATURE == "Paved Parking"| FEATURE == "Edge of Paved Road")
+#filter(FEATURE == "Remaining Pervious Area")
 
 
 
 cover_plot = ggplot(pavedwaller)+
   geom_sf(aes(fill = FEATURE))+
-  #scale_fill_manual(palette =c("yellow","purple"))+
+  scale_fill_brewer(palette="Set1")+
   labs(x = "", y = "", title = "Land Cover Features")+
   theme_minimal()+
   coord_sf(datum=NA)
   
 cover_plot 
-beep()
+beep(1)
 
 ```
 

@@ -229,5 +229,5 @@ summary(mult_ti)
 ```
 
 ```{r, results='asis'}
-stargazer(mult_uhi,  type = "html")
+#stargazer(mult_uhi,  type = "html")
 ```

@@ -181,14 +181,14 @@ tree_value = tree_count %>%
   mutate(tree_disc=tree_intensity-avg_tree) %>% 
   mutate(tree_disc_num = tree_disc*shape_area) %>% 
   mutate(value_disc = tree_disc_num*value_per_tree) %>% 
-  mutate(tree_ben = tree_sum*value_per_tree)
+  mutate(tree_ben = tree_intensity*value_per_tree)
 ```
 
 
-```{r, echo=FALSE}
+```{r, include=FALSE}
 tree_plot_benefit = ggplot(tree_value)+
   geom_sf(aes(fill = tree_ben))+
-  scale_fill_gradient2("Value Discrepency",low = "white", high = "deepskyblue4", breaks=c(min(tree_value$tree_ben),max(tree_value$tree_ben)),labels=c("$0","$34,000"))+
+  scale_fill_gradient("Value",low = "oldlace", high = "deepskyblue4", breaks=c(min(tree_value$tree_ben),max(tree_value$tree_ben)),labels=c("$0","$34,000"))+
   #scale_colour_brewer(palette = "PiYG")+
   labs(x = "", y = "", title = "Tree Value Based on Simulated Tree \nIntensity By Census Tract")+
   geom_sf(data = Wallercreek, 
