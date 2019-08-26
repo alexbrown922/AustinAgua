@@ -230,7 +230,7 @@ tree_value_waller = croppedcensus %>%
 ```{r}
 tree_plot_waller_value = ggplot(tree_value_waller)+
   geom_sf(aes(fill = value_disc))+
-  scale_fill_gradient2("Value Discrepency",low = "firebrick4", mid = "white", high = "deepskyblue4", breaks=c(min(tree_value_waller$value_disc),0,max(tree_value_waller$value_disc)),labels=c("-$500","$0","$350"))+
+  scale_fill_gradient2("Value Discrepency",low = "firebrick4", mid = "white", high = "deepskyblue4", breaks=c(min(tree_value_waller$value_disc),0,max(tree_value_waller$value_disc)),labels=c("-$550","$0","$400"))+
   #scale_colour_brewer(palette = "PiYG")+
   labs(x = "", y = "", title = "Tree Value Discrepency Based on Simulated Tree \nIntensity By Census Tract")+
   geom_sf(data = Wallercreek, 
