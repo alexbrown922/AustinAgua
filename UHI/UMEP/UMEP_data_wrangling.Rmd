@@ -60,6 +60,13 @@ library(hyfo)
 I need to convert the default filler (9999 to NA so the package can read it)
 ```{r}
 md_filled = md_UMEP %>% 
-  case_when(press==9999~"NA")
+  mutate(press_fill=case_when(press!=99999.00~press)) %>% 
+  mutate(rain_fill=case_when(rain!=99999.00~rain)) %>% 
+  mutate(wind_fill=case_when(Wind!=99999.00~Wind)) %>% 
+  mutate(date_sig = id+(it/24)+(imin/600)) #This creates a continous time value so the different meterological datasets can be visualized over time 
+
+#ggplot(md_filled) +
+ # geom_point(aes(x = date_sig, y = press_fill))+
+ # theme_classic()
 ```
 
