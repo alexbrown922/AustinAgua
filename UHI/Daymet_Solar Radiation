@@ -1,4 +1,0 @@
-Daymet solar radiation file (stored as NetCDF data in R)
-
-Source: DAYMET, NASA Earth Data - https://daymet.ornl.gov/overview
-Helpful information for downloading and working with NetCDF data in R: https://rpubs.com/boyerag/297592
