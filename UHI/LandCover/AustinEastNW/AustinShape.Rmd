@@ -42,7 +42,7 @@ land_sum = landcoverwaller %>%
   arrange(-sum_area)
 land_sum
 beep(6)
-frac_impervous=(sum(land_sum$sum_area)-(18010340+536880+111809.4+60614.13+)/sum(land_sum$sum_area)
+frac_impervous=((sum(land_sum$sum_area)-(18010340+536880+111809.4+60614.13+48861.97+21312.08))/sum(land_sum$sum_area))
 frac_impervous
 ```
 
