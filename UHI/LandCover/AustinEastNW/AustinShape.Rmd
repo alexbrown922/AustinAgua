@@ -38,9 +38,12 @@ ggplot(landcoverwaller)+
 ```{r}
 land_sum = landcoverwaller %>% 
   group_by(FEATURE) %>% 
-  summarise(sum_area = sum(Shape_Area))
+  summarise(sum_area = sum(Shape_Area)) %>% 
+  arrange(-sum_area)
 land_sum
 beep(6)
+frac_impervous=(sum(land_sum$sum_area)-(18010340+536880+111809.4+60614.13+)/sum(land_sum$sum_area)
+frac_impervous
 ```
 
 
