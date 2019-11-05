@@ -1,0 +1,80 @@
+---
+title: "AustinLandCover"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include=FALSE}
+library(tidyverse)
+library(sf)
+library(leaflet)
+library(tmap)
+library(spatstat)
+library(maptools)
+library(sp)
+library(raster)
+library(beepr)
+library(RColorBrewer)
+library(stargazer)
+```
+
+```{r}
+#landcoverNW = st_read(dsn = ".", layer = "AustinEastNW") %>% 
+ #  st_transform(crs = 4326)
+
+landcoverwaller = st_read(dsn = ".", layer = "coverwaller3")
+beep(8)
+```
+
+```{r}
+ggplot(landcoverwaller)+
+  geom_bar(aes(x = FEATURE))+
+  theme_classic()
+```
+
+```{r}
+land_sum = landcoverwaller %>% 
+  group_by(FEATURE) %>% 
+  summarise(sum_area = sum(Shape_Area))
+land_sum
+beep(6)
+```
+
+
+
+```{r}
+
+pavedwaller = landcoverwaller %>% 
+filter(FEATURE == "Structure"| FEATURE == "Paved"| FEATURE == "Sidewalk"| FEATURE == "Paved Parking"| FEATURE == "Edge of Paved Road")
+#filter(FEATURE == "Remaining Pervious Area")
+
+
+
+cover_plot = ggplot(pavedwaller)+
+  geom_sf(aes(fill = FEATURE))+
+  scale_fill_brewer(palette="Set1")+
+  labs(x = "", y = "", title = "Land Cover Features")+
+  theme_minimal()+
+  coord_sf(datum=NA)
+  
+cover_plot 
+beep(1)
+
+```
+
+```{r}
+
+waller3outline = st_read(dsn = ".", layer = "WLR3") %>% 
+  st_transform(crs = 4326)
+
+tmap_mode(mode = "view")
+tm_basemap("Esri.WorldImagery")+
+  tm_shape(waller3outline)+
+  tm_borders(col = "black", lwd = 3)+
+  tm_legend(title ="Land Cover Fractions")
+ 
+```
+
