@@ -1,5 +1,5 @@
 ---
-title: "Urban Forestry Spatial Correlations"
+title: "Urban Heat Island Visual Correlations"
 output: html_document
 ---
 
@@ -71,15 +71,15 @@ tm_basemap("Esri.WorldImagery")+
   tm_fill("Intensity", low = "oldlace", high = "red4", alpha = 0.7)+
   tm_legend(title ="Relative Urban Heat Island Intensity by Census Tract")+
   tm_shape(Wallercreek)+
-  tm_borders(col = "black", lwd = 1)+
-  tm_shape(tree_prioritization)+
-  tm_fill("air_qual", palette = air_palette, alpha = 0.7)
+  tm_borders(col = "black", lwd = 1)#+
+  #tm_shape(tree_prioritization)+
+  #tm_fill("air_qual", palette = air_palette, alpha = 0.7)
  
  # tm_shape(tree_map_shape)#+
   #tm_dots("DN", palette = "darkgreen")
 ```
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
+```{r, include=FALSE}
 #leaflet(tree_prioritization_uhi) %>% #need to change the coordinate reference system to match
  # addPolygons()
 
@@ -98,7 +98,7 @@ uhi_plot = ggplot(tree_prioritization_uhi)+
 
 uhi_plot
 ```
-```{r, echo=FALSE}
+```{r, include=FALSE}
 
 mapRange <- c(range(st_coordinates(Wallercreek)[,1]),range(st_coordinates(Wallercreek)[,2]))
 
@@ -129,7 +129,7 @@ tree_count_only = tree_count %>%
   as.data.frame() 
 ```
 
-```{r, echo=FALSE}
+```{r, include=FALSE}
 tree_plot = ggplot(tree_count)+
   geom_sf(aes(fill = tree_intensity))+
   scale_fill_gradient("Simulated Canopy Intensity", low = "lightyellow", high = "darkgreen", breaks=c(0,9.818678e-07),labels=c("Low","High"))+
@@ -144,7 +144,7 @@ tree_plot
 ```
 
 
-```{r, echo=FALSE}
+```{r, include=FALSE}
 tree_plot_waller = ggplot(tree_count)+
   geom_sf(aes(fill = tree_intensity))+
   scale_fill_gradient("Simulated Canopy Intensity", low = "lightyellow", high = "darkgreen", breaks=c(0,9.818678e-07),labels=c("Low","High"))+
@@ -169,9 +169,77 @@ ggplot(tree_count_only)+
   labs(title = "Relationship Between Urban Heat Island and Simulated \nTree Canopy by Austin Census Tract", y = "Comparitive Land Surface Temperature Intensity", x = "Simulated Tree Intensity")+
   geom_smooth(method = "lm", aes(x = tree_intensity,y=uhi))+
   geom_text(x = 7.5e-07, y = 0.25, aes(label = "*** R Squared = 0.28"))+
-  scale_x_continuous()
+  scale_x_continuous(breaks=c(min(census_social$tree_intensity), max(census_social$tree_intensity)), labels=c("Low","High"))
 
 ```
 
+
+```{r, include=FALSE}
+avg_tree = mean(tree_count$tree_intensity)
+value_per_tree = 56
+tree_value = tree_count %>% 
+  mutate(tree_disc=tree_intensity-avg_tree) %>% 
+  mutate(tree_disc_num = tree_disc*shape_area) %>% 
+  mutate(value_disc = tree_disc_num*value_per_tree) %>% 
+  mutate(tree_ben = tree_intensity*value_per_tree)
+```
+
+
+```{r, include=FALSE}
+tree_plot_benefit = ggplot(tree_value)+
+  geom_sf(aes(fill = tree_ben))+
+  scale_fill_gradient("Value",low = "oldlace", high = "deepskyblue4", breaks=c(min(tree_value$tree_ben),max(tree_value$tree_ben)),labels=c("$0","$34,000"))+
+  #scale_colour_brewer(palette = "PiYG")+
+  labs(x = "", y = "", title = "Tree Value Based on Simulated Tree \nIntensity By Census Tract")+
+  geom_sf(data = Wallercreek, 
+          fill = "NA", 
+          color = "black", 
+          size = 1)+
+  theme_minimal()+
+  coord_sf(datum=NA)
+tree_plot_benefit
+```
+
+
+```{r}
+
+tree_plot_value = ggplot(tree_value)+
+  geom_sf(aes(fill = value_disc))+
+  scale_fill_gradient2("Value Discrepency",low = "firebrick4", mid = "white", high = "deepskyblue4", breaks=c(min(tree_value$value_disc),0,max(tree_value$value_disc)),labels=c("-$9,000","$0","$15,000"))+
+  #scale_colour_brewer(palette = "PiYG")+
+  labs(x = "", y = "", title = "Tree Value Discrepency Based on Simulated Tree \nIntensity By Census Tract")+
+  geom_sf(data = Wallercreek, 
+          fill = "NA", 
+          color = "black", 
+          size = 1)+
+  theme_minimal()+
+  coord_sf(datum=NA)
+tree_plot_value
+```
+
+```{r}
+croppedcensus = st_read(dsn = ".", layer = "treewallerclipped") %>% 
+   st_transform(crs = 4326)
+tree_value_waller = croppedcensus %>%
+  mutate(tree_intensity = tree_sum/shape_area) %>% 
+  mutate(tree_disc=tree_intensity-avg_tree) %>% 
+  mutate(tree_disc_num = tree_disc*shape_area) %>% 
+  mutate(value_disc = tree_disc_num*value_per_tree)
+```
+
+```{r}
+tree_plot_waller_value = ggplot(tree_value_waller)+
+  geom_sf(aes(fill = value_disc))+
+  scale_fill_gradient2("Value Discrepency",low = "firebrick4", mid = "white", high = "deepskyblue4", breaks=c(min(tree_value_waller$value_disc),0,max(tree_value_waller$value_disc)),labels=c("-$550","$0","$400"))+
+  #scale_colour_brewer(palette = "PiYG")+
+  labs(x = "", y = "", title = "Tree Value Discrepency Based on Simulated Tree \nIntensity By Census Tract")+
+  geom_sf(data = Wallercreek, 
+          fill = "NA", 
+          color = "black", 
+          size = 1)+
+  theme_minimal()+
+  coord_sf(datum=NA)
+tree_plot_waller_value
+```
 
 
