@@ -25,7 +25,9 @@ library(stargazer)
 #landcoverNW = st_read(dsn = ".", layer = "AustinEastNW") %>% 
  #  st_transform(crs = 4326)
 
-landcoverwaller = st_read(dsn = ".", layer = "coverwaller3")
+#hi
+landcoverwaller = st_read(dsn = ".", layer = "coverwaller3") %>% 
+  mutate(landm2 = Shape_Area/23.17)
 beep(8)
 ```
 
