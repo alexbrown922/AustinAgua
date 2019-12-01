@@ -28,7 +28,7 @@ library(stargazer)
 tree_prioritization <- st_read(dsn = ".", layer = "geo_export_2e82f388-c013-45a0-bb25-522154013165") %>% 
    st_transform(crs = 4326)
 
-tree_map = raster("tree_canopy_2010.tif") 
+#tree_map = raster("tree_canopy_2010.tif") 
 
 Wallercreek <- st_read(dsn = ".", layer = "WallerCrk") %>% 
    st_transform(crs = 4326) 
