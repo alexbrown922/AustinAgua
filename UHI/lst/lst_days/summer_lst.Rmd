@@ -11,7 +11,38 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This file is for the coalating of the days from the summer of 2014 to determine the relationship between canopy and lst for summer months. Each of the files is saved as "t_l_Day_Month_Year" or "t_l_18_8_2014". Important data such as the proximity to a rain event of above __ inches percipitation, recorded Austin temperature in Camp mabry during this time, will be recorded for each different datapoint. 
 
+##Loading Packages
 ```{r}
+library(tidyverse)
+library(sf)
+library(leaflet)
+library(tmap)
+library(spatstat)
+library(maptools)
+library(sp)
+library(raster)
+library(beepr)
+library(RColorBrewer)
+library(stargazer)
+```
 
+##Reading in the many spatial datasets 
+```{r}
+august8 = st_read(dsn = ".", layer = "t_l_18_8_2014") %>%
+  st_transform(crs = 4326) %>% 
+  mutate(lst=gridcode_1/1000) %>% 
+  mutate(tree_frac=gridcode/10000)
+```
+##Exploratory Data Visualization
+```{r}
+ggpolt(data=august8)+
+  geom_point(aes(x=tree_frac,y=lst))
+```
+
+
+##Creating a linear model
+```{r}
+tree_reg_days = lm(lst~tree_frac, data = august8)
+summary(tree_reg_days)
 ```
 
