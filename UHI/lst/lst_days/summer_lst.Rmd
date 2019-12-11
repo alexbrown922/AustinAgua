@@ -35,7 +35,7 @@ august8 = st_read(dsn = ".", layer = "t_l_18_8_2014") %>%
 ```
 ##Exploratory Data Visualization
 ```{r}
-ggpolt(data=august8)+
+ggpolt()+
   geom_point(aes(x=tree_frac,y=lst))
 ```
 
