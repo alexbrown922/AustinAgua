@@ -1,5 +1,6 @@
-# AustinAgua
-This repo has been created as a data repository for the AustinAgua project, a Master's Group Thesis Project created by four graduate students at the Bren School of Environmental Science & Management at University of California, Santa Barbara. 
+# Welcome to the AustinAgua GP repo!
+ 
+This repo is a data repository for the AustinAgua project, a Master's Group Thesis Project created by four graduate students at the Bren School of Environmental Science & Management at University of California, Santa Barbara. 
 
 More information about the AustinAgua project can be found at our group project website: https://austinagua.wixsite.com/website
 
@@ -10,4 +11,4 @@ We wish to thank the following individuals for their input and guidance on this 
  - our faculty advisor, Dr. Naomi Tague, committee (Drs. Bob Wilkinson, Kelsey Jack, and Alan Murray); 
  - and our PhD student advisor, Rachel Torres. 
  
- Additionally, we would like to thank Dr. Olivier Deschenes for his valuable input regarding valuation of energy savings resulting from UHI reductions associated with urban rain garden installation.  
+Additionally, we would like to thank Dr. Olivier Deschenes for his valuable input regarding valuation of energy savings resulting from UHI reductions associated with urban rain garden installation.  
