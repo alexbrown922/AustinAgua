@@ -31,7 +31,26 @@ library(stargazer)
 august8 = st_read(dsn = ".", layer = "t_l_18_8_2014") %>%
   st_transform(crs = 4326) %>% 
   mutate(lst=gridcode_1/1000) %>% 
-  mutate(tree_frac=gridcode/10000)
+  mutate(tree_frac=gridcode/10000)%>% 
+  dplyr::select(lst,tree_frac)
+
+#september3 = st_read(dsn = ".", layer = "t_l_3_9_2014") %>% #needs to be rejoined
+ # st_transform(crs = 4326) #%>% 
+ # mutate(lst=gridcode_1/1000) %>% 
+ # mutate(tree_frac=gridcode/10000)%>% 
+  #dplyr::select(lst,tree_frac)
+
+july14 = st_read(dsn = ".", layer = "t_l_14_7_2014") %>%
+  st_transform(crs = 4326) %>% 
+  mutate(lst=gridcode/1000) %>% 
+  mutate(tree_frac=Avg_trees/10000)%>% 
+  dplyr::select(lst,tree_frac)
+
+may14 = st_read(dsn = ".", layer = "t_l_14_5_2014") %>%
+  st_transform(crs = 4326) %>% 
+  mutate(lst=gridcode/1000) %>% 
+  mutate(tree_frac=Avg_trees/10000) %>% 
+  dplyr::select(lst,tree_frac)
 ```
 ##Exploratory Data Visualization
 ```{r}
