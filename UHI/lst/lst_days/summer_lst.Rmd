@@ -24,44 +24,57 @@ library(raster)
 library(beepr)
 library(RColorBrewer)
 library(stargazer)
+library(Stack)
 ```
 
 ##Reading in the many spatial datasets 
 ```{r}
-august8 = st_read(dsn = ".", layer = "t_l_18_8_2014") %>%
+august8 = as.data.frame(st_read(dsn = ".", layer = "t_l_18_8_2014") %>%
   st_transform(crs = 4326) %>% 
-  mutate(lst=gridcode_1/1000) %>% 
-  mutate(tree_frac=gridcode/10000)%>% 
-  dplyr::select(lst,tree_frac)
+  filter(Distance_1==0) %>% 
+  mutate(lst=grid_cod_1) %>% 
+  mutate(tree_cover=grid_code/10000) %>% 
+  dplyr::select(tree_cover,lst))
 
-#september3 = st_read(dsn = ".", layer = "t_l_3_9_2014") %>% #needs to be rejoined
- # st_transform(crs = 4326) #%>% 
- # mutate(lst=gridcode_1/1000) %>% 
- # mutate(tree_frac=gridcode/10000)%>% 
-  #dplyr::select(lst,tree_frac)
+september3 = as.data.frame(st_read(dsn = ".", layer = "t_l_3_9_2014") %>% #needs to be rejoined
+  st_transform(crs = 4326)%>% 
+  filter(Distance_1==0) %>% 
+  mutate(lst=grid_cod_1) %>%
+  mutate(tree_cover=grid_code/10000) %>% 
+  dplyr::select(tree_cover,lst))
 
-july14 = st_read(dsn = ".", layer = "t_l_14_7_2014") %>%
+july14 = as.data.frame(st_read(dsn = ".", layer = "t_l_14_7_2014") %>%
   st_transform(crs = 4326) %>% 
-  mutate(lst=gridcode/1000) %>% 
-  mutate(tree_frac=Avg_trees/10000)%>% 
-  dplyr::select(lst,tree_frac)
+  filter(Distance_1==0) %>% 
+  mutate(tree_cover=grid_code/10000) %>% 
+  mutate(lst=grid_cod_1/1000) %>% 
+  dplyr::select(tree_cover,lst))
 
-may14 = st_read(dsn = ".", layer = "t_l_14_5_2014") %>%
+may14 = as.data.frame(st_read(dsn = ".", layer = "t_l_14_5_2014") %>%
   st_transform(crs = 4326) %>% 
-  mutate(lst=gridcode/1000) %>% 
-  mutate(tree_frac=Avg_trees/10000) %>% 
-  dplyr::select(lst,tree_frac)
+  filter(Distance_1==0) %>% 
+  mutate(tree_cover=grid_code/10000) %>% 
+  mutate(lst=grid_cod_1/1000) %>% 
+  dplyr::select(tree_cover,lst))
+
 ```
-##Exploratory Data Visualization
+##Merging the datasets
+
 ```{r}
-ggpolt()+
-  geom_point(aes(x=tree_frac,y=lst))
+summer_lst=rbind(may14,july14,august8,september3)
 ```
 
 
-##Creating a linear model
+##Creating a linear model for all days
 ```{r}
-tree_reg_days = lm(lst~tree_frac, data = august8)
+tree_reg_days = lm(lst~tree_cover, data = summer_lst)
 summary(tree_reg_days)
 ```
+
+##Looking at just the hottest day (August 8)
+```{r}
+tree_reg_aug = lm(lst~tree_cover, data = august8)
+summary(tree_reg_aug)
+```
+
 
