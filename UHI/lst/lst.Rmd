@@ -25,13 +25,22 @@ library(stargazer)
 ```
 
 ```{r}
-tree_lst = st_read(dsn = ".", layer = "lst_tree_waller") #%>% 
-   #st_transform(crs = 4326)
+tree_lst = st_read(dsn = ".", layer = "meanlsttrees") %>% 
+   st_transform(crs = 4326)
 ```
 
 ```{r}
-tree_reg = lm(mean_lst~tree_cover, data = tree_lst)
-summary(tree_reg)
+tree_clean= tree_lst %>% 
+  filter(Distance_1==0) %>% 
+  mutate(lst_C=(grid_cod_1-32)*(5/9)) %>% 
+  mutate(tree_cover=grid_code/10000) %>% 
+  dplyr::select(lst_C,tree_cover,grid_cod_1)
+
+tree_reg_C = lm(lst_C~tree_cover, data = tree_clean)
+summary(tree_reg_C)
+
+tree_reg_F = lm(grid_cod_1~tree_cover, data = tree_clean)
+summary(tree_reg_F)
 ```
 
 ```{r}
