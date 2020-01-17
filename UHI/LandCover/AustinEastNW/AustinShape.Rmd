@@ -38,10 +38,10 @@ ggplot(landcoverwaller)+
 ```
 
 ```{r}
-wlr_area = 2854960.02 #m2
+wlr_area = 2853746.96 #m2
 land_sum = landcoverwaller %>% 
   group_by(FEATURE) %>% 
-  summarise(sum_area = sum(Shape_Area)) %>% 
+  summarise(sum_area = sum(landm2)) %>% 
   arrange(-sum_area)
 land_sum
 
@@ -61,9 +61,9 @@ filter(FEATURE == "Structure"| FEATURE == "Paved"| FEATURE == "Sidewalk"| FEATUR
 
 
 
-cover_plot = ggplot(pavedwaller)+
+cover_plot = ggplot(landcoverwaller)+
   geom_sf(aes(fill = FEATURE))+
-  scale_fill_brewer(palette="Set1")+
+  #scale_fill_brewer(palette="Set1")+
   labs(x = "", y = "", title = "Land Cover Features")+
   theme_minimal()+
   coord_sf(datum=NA)
@@ -84,5 +84,23 @@ tm_basemap("Esri.WorldImagery")+
   tm_borders(col = "black", lwd = 3)+
   tm_legend(title ="Land Cover Fractions")
  
+```
+
+
+```{r}
+Fr_Paved=0
+
+Fr_Bldgs= 2.396607e+05/wlr_area #This is taken from the sum of all land area coded as structure
+
+Fr_DecTr= 798105/wlr_area
+#This is taken by adding up all the 1by1 m squares that are marked as being tree canopy from the 2010 tree cover dataset. To see the original data look at the wlr_landuse arc project in the wlr_tree_count shapefile 
+
+Fr_Grass=0
+
+Fr_Bsoil=0
+
+Fr_Water=0 #Taken from landuse code data set 
+
+Fr_Paved+Fr_Bldgs+Fr_DecTr+Fr_Grass+Fr_Bsoil+Fr_Water
 ```
 
