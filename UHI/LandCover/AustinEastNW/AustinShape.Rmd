@@ -122,16 +122,16 @@ m_wlr_area = sum(land_sum$sum_area)
 ```
 
 ```{r}
-Fr_Paved=(paved)/wlr_area
+Fr_Paved=(paved+paved_road)/m_wlr_area
 
-Fr_Bldgs= (structure+tanks+Above_ground+open_storage)/wlr_area #This is taken from the sum of all land area coded as structure
+Fr_Bldgs= (structure+tanks+Above_ground+open_storage)/m_wlr_area #This is taken from the sum of all land area coded as structure
 
-Fr_DecTr= tree_area/wlr_area
+Fr_DecTr= tree_area/m_wlr_area
 #This is taken by adding up all the 1by1 m squares that are marked as being tree canopy from the 2010 tree cover dataset. To see the original data look at the wlr_landuse arc project in the wlr_tree_count shapefile 
 
-Fr_Grass=((pervious*.5)+fields)/wlr_area#This is the remaining pervious area as from the land_sum subtracted by the area of the trees and bare soil
+Fr_Grass=((pervious*.5)+fields)/m_wlr_area#This is the remaining pervious area as from the land_sum subtracted by the area of the trees and bare soil
 
-Fr_Bsoil=(pervious)*.5/wlr_area
+Fr_Bsoil=(pervious)*.5/m_wlr_area
 
 Fr_Water=0 #Taken from landuse code data set 
 
