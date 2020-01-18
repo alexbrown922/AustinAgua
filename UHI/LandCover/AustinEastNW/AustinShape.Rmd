@@ -39,6 +39,7 @@ ggplot(landcoverwaller)+
 
 ```{r}
 wlr_area = 2853746.96 #m2
+
 land_sum = landcoverwaller %>% 
   group_by(FEATURE) %>% 
   summarise(sum_area = sum(landm2)) %>% 
@@ -49,6 +50,8 @@ land_sum
 #beep(6)
 #frac_impervous=((sum(land_sum$sum_area)-(18010340+536880+111809.4+60614.13+48861.97+21312.08))/sum(land_sum$sum_area))
 #frac_impervous
+
+sum(land_sum$sum_area)
 ```
 
 
@@ -89,17 +92,46 @@ tm_basemap("Esri.WorldImagery")+
 
 ```{r}
 tree_area = 798105
-bare_soil = 
-Fr_Paved=0
+pervious = 7.773128e+05
+fields=2.317160e+04
+paved_road= 4.813687e+06
+paved_parking = 2.648962e+05
+paved = 3.424619e+04
+sidewalk = 2.543097e+04
+patio = 5.793391e+03
+tanks = 5.029028e+03
+structure=2.396607e+05
+edge_paved = 4.996365e+03
+unpaved = 4.825611e+03
+open_storage = 3.861893e+03
+open_space = 2.616061e+03
+unpaved_parking = 2.108846e+03
+Uncovered = 1.477170e+03	
+ball_field =9.198137e+02	
+Courtyard=8.238540e+02	
+Median_10 = 5.860734e+02		
+In_ground=5.324062e+02	
+Above_ground=3.818474e+02		
+Bridge=3.193245e+02	
+alley=	3.183236e+02	
+unpaved_road=2.632493e+02	
+Dock = 6.311706e+01	
+Misc=4.762942e+01	
 
-Fr_Bldgs= 2.396607e+05/wlr_area #This is taken from the sum of all land area coded as structure
+m_wlr_area = sum(land_sum$sum_area)
+```
+
+```{r}
+Fr_Paved=(paved)/wlr_area
+
+Fr_Bldgs= (structure+tanks+Above_ground+open_storage)/wlr_area #This is taken from the sum of all land area coded as structure
 
 Fr_DecTr= tree_area/wlr_area
 #This is taken by adding up all the 1by1 m squares that are marked as being tree canopy from the 2010 tree cover dataset. To see the original data look at the wlr_landuse arc project in the wlr_tree_count shapefile 
 
-Fr_Grass=7.773128e+05- #This is the remaining pervious area as from the land_sum subtracted by the area of the trees and bare soil
+Fr_Grass=((pervious*.5)+fields)/wlr_area#This is the remaining pervious area as from the land_sum subtracted by the area of the trees and bare soil
 
-Fr_Bsoil=0
+Fr_Bsoil=(pervious)*.5/wlr_area
 
 Fr_Water=0 #Taken from landuse code data set 
 
