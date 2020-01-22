@@ -18,4 +18,22 @@ library(janitor)
 trees = read_csv("treeinfo.csv") %>% 
   clean_names()
 ```
+Height is in feet, growth is in inches/year, spread is in feet
+
+
+```{r}
+tree_analysis = trees %>% 
+  mutate(average_spread = (low_spread+high_spread)/2) %>% 
+  mutate(age_at_mature = average_mature_height/(growth_rate/12)) %>% 
+  mutate(spread_per_year = average_spread/average_mature_height) %>% 
+  mutate(area_per_year = pi*(spread_per_year^2)) %>% 
+  mutate(area_per_year_m2 = area_per_year/10.76) %>% 
+  mutate(crown_1_year=area_per_year_m2) %>% 
+  mutate(crown_5_years=area_per_year_m2*5)
+
+tree_avg_area_one_year = mean(tree_analysis$crown_1_year)
+tree_avg_area_five_year = mean(tree_analysis$crown_5_years)
+tree_five_high = max(tree_analysis$crown_5_years)
+tree_one_low = min(tree_analysis$crown_1_year)
+```
 

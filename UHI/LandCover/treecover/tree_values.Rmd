@@ -1,0 +1,32 @@
+---
+title: "Fraction Calculations"
+author: "Madeline Gorchels"
+date: "1/22/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##Loading Packages
+```{r}
+library(tidyverse)
+```
+
+##Giving you the status quo area variables
+```{r}
+#Status quo areas based off of no change of land use all values are in m2 see the landcover RMD in the AustinNW subfolder for details 
+trees = 798105
+grass = 268414.4
+waller_area = 2853746.96
+homes_adopting = 400
+```
+
+##Giving you the tree area information. Assumes an age of 5 years. All areas in m2
+```{r}
+high_tree_area = 2.59529
+low_tree_area = 0.26814
+average_tree_area = 1.33164
+```
+
