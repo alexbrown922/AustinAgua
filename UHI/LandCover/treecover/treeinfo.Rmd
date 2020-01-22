@@ -1,0 +1,21 @@
+---
+title: "Tree Estimates"
+author: "Madeline Gorchels"
+date: "1/22/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(janitor)
+```
+
+```{r}
+trees = read_csv("treeinfo.csv") %>% 
+  clean_names()
+```
+
