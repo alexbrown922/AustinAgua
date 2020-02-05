@@ -134,5 +134,7 @@ Fr_Bsoil=(Uncovered+unpaved_road+open_space+unpaved_parking+unpaved)/wlr_area
 Fr_Water=0 #Taken from landuse code data set 
 
 Fr_Paved+Fr_Bldgs+Fr_DecTr+Fr_Grass+Fr_Bsoil+Fr_Water
+
+grass=pervious-(tree_area*2/3)+fields
 ```
 

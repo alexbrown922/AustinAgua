@@ -1,0 +1,41 @@
+---
+title: "CO2 Emissions"
+author: "Madeline Gorchels"
+date: "2/5/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##The point of this markdown is to convert kWh saved into emissions in units of CO2 equivalents. Talk to Madeline for clarification
+
+```{r}
+library(tidyverse)
+```
+
+#The esimates from this are taken from the documentation behind WESim. These estimates are for the average US grid. See the full report for details: https://pacinst.org/wp-content/uploads/2012/07/report19.pdf
+
+#Variables
+```{r}
+source_site_efficency = 3.34 # for every one kwh consumed, 3.34 need to be produced
+kg_co2_kwh = 0.588 # number of kg of co2 released for one kwh produced
+kg_ch4_kwh = 0.0000114 # number of kg of ch4 released for one kwh produced
+kg_no2_kwh = 0.00000893 # number of kg of no2 released for one kwh produced
+kg_to_mtons = 1000 #conversion factor of kg to metric tons
+ch4_wf = 25 # one kg of ch4 is 25x the warming of one ton co2
+no2_wf = 298 # one kg of no4 is 298x the warming of one ton co2
+waller_kwh_savings = 33411
+home_kwh_savings = 84
+```
+
+#Co2 reduced by one home 
+```{r}
+((home_kwh_savings*(kg_co2_kwh) + home_kwh_savings*(kg_ch4_kwh*ch4_wf) + home_kwh_savings*(kg_no2_kwh*no2_wf))*source_site_efficency)/kg_to_mtons
+```
+
+#Co2 reduced by waller 
+```{r}
+((waller_kwh_savings*(kg_co2_kwh) + waller_kwh_savings*(kg_ch4_kwh*ch4_wf) + waller_kwh_savings*(kg_no2_kwh*no2_wf))*source_site_efficency)/kg_to_mtons
+```
