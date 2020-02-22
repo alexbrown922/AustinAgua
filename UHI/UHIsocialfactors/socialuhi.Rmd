@@ -56,6 +56,11 @@ census_social = full_join(census_tree, social_prior, by="health") %>%
   #filter(!is.na(geoid10.y)) %>% 
   filter(!is.na(uhi.x)) %>% 
   mutate(tree_intensity = tree_sum/shape_area.x)
+
+#st_write(census_social, "austin_uhi_census.shp", driver="ESRI Shapefile")
+#c_s_test = st_read(dsn = ".", layer = "austin_uhi_census") %>%
+  #st_transform(crs = 4326)
+
 ```
 
 

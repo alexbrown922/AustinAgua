@@ -35,5 +35,14 @@ tree_avg_area_one_year = mean(tree_analysis$crown_1_year)
 tree_avg_area_five_year = mean(tree_analysis$crown_5_years)
 tree_five_high = max(tree_analysis$crown_5_years)
 tree_one_low = min(tree_analysis$crown_5_years)
+
+mature=mean(tree_analysis$average_spread)
+mature_max = max(tree_analysis$average_spread)
+
+frac_mean = mature/(30*30)
+frac_max = mature_max/(30*30)
+
+frac_mean*4.5
+frac_max*4.5
 ```
 

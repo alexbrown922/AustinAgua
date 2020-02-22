@@ -33,8 +33,9 @@ august8 = as.data.frame(st_read(dsn = ".", layer = "t_l_18_8_2014") %>%
   st_transform(crs = 4326) %>% 
   filter(Distance_1==0) %>% 
   mutate(lst=grid_cod_1) %>% 
+  mutate(lst_F = lst*(9/5)+32) %>% 
   mutate(tree_cover=grid_code/10000) %>% 
-  dplyr::select(tree_cover,lst))
+  dplyr::select(tree_cover,lst,lst_F))
 
 september3 = as.data.frame(st_read(dsn = ".", layer = "t_l_3_9_2014") %>% #needs to be rejoined
   st_transform(crs = 4326)%>% 
@@ -76,5 +77,24 @@ summary(tree_reg_days)
 tree_reg_aug = lm(lst~tree_cover, data = august8)
 summary(tree_reg_aug)
 ```
+```{r}
+ggplot(august8)+
+  geom_point(aes(x=tree_cover,y=lst_F))+
+  theme_classic()+
+  #labs(title = "Relationship Between Urban Heat Island and Simulated \nTree Canopy by Austin Census Tract", y = "Comparitive Land Surface Temperature Intensity", x = "Simulated Tree Intensity")+
+  geom_smooth(method = "lm", aes(x = tree_cover,y=lst_F))+
+  geom_text(x = 0.80, y = 91, aes(label = "*** R Squared = 0.26"))+#+
+  #scale_x_continuous(breaks=c(min(tree_lst$tree_cover), max(tree_lst$tree_cover)), labels=c("Low","High")
+   scale_x_continuous(expand = c(0,0))+
+  ylab("Average Land Surface Temperature (F)")+
+  xlab("Fraction Tree Covered")
+```
+
+
+
+```{r}
+3.0*(9/5)
+```
+
 
 
