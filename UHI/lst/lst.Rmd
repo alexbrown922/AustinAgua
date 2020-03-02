@@ -23,6 +23,7 @@ library(raster)
 library(RColorBrewer)
 library(stargazer)
 library(spdep)
+library(gstat)
 ```
 
 ```{r}
@@ -62,10 +63,81 @@ Looking for spatial autocorrelation using this method: https://rspatial.org/rast
 ```{r}
 xy <- coordinates(tree_clean) #adding coordinates
 
-
 auto_tree = poly2nb(tree_clean, row.names=tree_clean$Id)
 a_tree_2 =nb2listw(auto_tree, style='B')
 
 plot(auto_tree, col='red', lwd=2, add=TRUE)
+```
+Take Two: LST C 
+```{r}
+tree_sp = sf::as_Spatial(tree_clean)
+
+tree_nb = poly2nb(tree_sp, queen=TRUE)
+tree_nb[[1]]
+
+lw <- nb2listw(tree_nb, style="W", zero.policy=TRUE)
+
+Inc.lag <- lag.listw(lw, tree_sp$lst_C)
+
+M <- lm(Inc.lag ~ tree_sp$lst_C)
+
+plot(Inc.lag ~ tree_sp$lst_C, pch=20, asp=1, las=1)
+coef(M)[2]
+```
+
+```{r}
+n <- 599L   # Define the number of simulations
+I.r_C <- vector(length=n)  # Create an empty vector
+
+for (i in 1:n){
+  # Randomly shuffle income values
+  x <- sample(tree_sp$lst_C, replace=FALSE)
+  # Compute new set of lagged values
+  x.lag <- lag.listw(lw, x)
+  # Compute the regression slope and store its value
+  M.r    <- lm(x.lag ~ x)
+  I.r_C[i] <- coef(M.r)[2]
+}
+# Plot the histogram of simulated Moran's I values
+# then add our observed Moran's I value to the plot
+hist(I.r_C, main=NULL, xlab="Moran's I", las=1)
+abline(v=coef(M)[2], col="red")
+
+N.greater_C <- sum(coef(M)[2] > I.r_C)
+p_C <- min(N.greater_C + 1, n + 1 - N.greater_C) / (n + 1)
+p_C
+#moran.test(tree_sp$lst_C,lw)
+```
+
+
+```{r}
+
+Inc.lag_tree <- lag.listw(lw, tree_sp$tree_cover)
+
+T <- lm(Inc.lag_tree ~ tree_sp$tree_cover)
+
+plot(Inc.lag_tree ~ tree_sp$tree_cover, pch=20, asp=1, las=1)
+coef(T)[2]
+
+n <- 599L   # Define the number of simulations
+I.r <- vector(length=n)  # Create an empty vector
+
+for (i in 1:n){
+  # Randomly shuffle income values
+  x <- sample(tree_sp$tree_cover, replace=FALSE)
+  # Compute new set of lagged values
+  x.lag <- lag.listw(lw, x)
+  # Compute the regression slope and store its value
+  M.r    <- lm(x.lag ~ x)
+  I.r[i] <- coef(M.r)[2]
+}
+# Plot the histogram of simulated Moran's I values
+# then add our observed Moran's I value to the plot
+hist(I.r, main=NULL, xlab="Moran's I", las=1)
+abline(v=coef(M)[2], col="red")
+
+N.greater <- sum(coef(T)[2] > I.r)
+p <- min(N.greater + 1, n + 1 - N.greater) / (n + 1)
+p
 ```
 
