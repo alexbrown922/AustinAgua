@@ -95,8 +95,8 @@ for (i in 1:n){
   # Compute new set of lagged values
   x.lag <- lag.listw(lw, x)
   # Compute the regression slope and store its value
-  M.r    <- lm(x.lag ~ x)
-  I.r_C[i] <- coef(M.r)[2]
+  C.r    <- lm(x.lag ~ x)
+  I.r_C[i] <- coef(C.r)[2]
 }
 # Plot the histogram of simulated Moran's I values
 # then add our observed Moran's I value to the plot
@@ -106,7 +106,8 @@ abline(v=coef(M)[2], col="red")
 N.greater_C <- sum(coef(M)[2] > I.r_C)
 p_C <- min(N.greater_C + 1, n + 1 - N.greater_C) / (n + 1)
 p_C
-#moran.test(tree_sp$lst_C,lw)
+
+moran.test(tree_sp$lst_C,lw)
 ```
 
 
