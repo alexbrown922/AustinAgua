@@ -88,9 +88,9 @@ air_palette = c("orchid4","cornflowerblue")
 
 uhi_plot = ggplot(tree_prioritization_uhi)+
   geom_sf(aes(fill = uhi))+
-  scale_fill_gradient("Comparitive Intensity", low = "oldlace", high = "red4")+
+  scale_fill_gradient("Relative Intensity", low = "oldlace", high = "red4")+
   
-  labs(x = "", y = "", title = "Comparitive Urban Heat Island of Census \nTracts Based off Land Surface Temperature")+
+  labs(x = "", y = "", title = "Relative Urban Heat Island Intensity of Census \nTracts Based off Land Surface Temperature")+
   geom_sf(data = Wallercreek, 
           fill = "NA", 
           color = "black", 
@@ -136,8 +136,8 @@ tree_count_only = tree_count %>%
 ```{r, include=FALSE}
 tree_plot = ggplot(tree_count)+
   geom_sf(aes(fill = tree_intensity))+
-  scale_fill_gradient("Simulated Canopy Intensity", low = "lightyellow", high = "darkgreen", breaks=c(0,9.818678e-07),labels=c("Low","High"))+
-  labs(x = "", y = "", title = "Simulated Tree Intensity By Census Tract")+
+  scale_fill_gradient("Relative Tree Canopy Coverage", low = "lightyellow", high = "darkgreen", breaks=c(0,9.818678e-07),labels=c("Low","High"))+
+  labs(x = "", y = "", title = "Relative Tree Canopy Coverage By Census Tract")+
   geom_sf(data = Wallercreek, 
           fill = "NA", 
           color = "black", 
