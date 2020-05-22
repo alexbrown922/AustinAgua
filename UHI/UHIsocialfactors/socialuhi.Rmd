@@ -1,8 +1,8 @@
 ---
 title: "Urban Heat Island, Tree Cover, and the 2017 American Community Survey"
 output:
-  html_document: default
   word_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -14,16 +14,16 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(sf)
 library(leaflet)
-library(tmap)
+#library(tmap)
 library(spatstat)
-library(maptools)
-library(sp)
-library(raster)
+#library(maptools)
+#library(sp)
+#library(raster)
 #library(beepr)
 library(RColorBrewer)
-library(stargazer)
+#library(stargazer)
 library(janitor)
-library(rgdal)
+#library(rgdal)
 
 ```
 
@@ -234,5 +234,5 @@ summary(mult_ti)
 ```
 
 ```{r, results='asis'}
-stargazer(mult_ti,  type = "html")
+#stargazer(mult_ti,  type = "html")
 ```
