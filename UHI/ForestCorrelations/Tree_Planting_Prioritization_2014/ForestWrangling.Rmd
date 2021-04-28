@@ -1,8 +1,8 @@
 ---
 title: "Urban Heat Island Visual Correlations"
 output:
-  word_document: default
   html_document: default
+  word_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-
+#Written by Madeline
 ```{r, include = FALSE, comment=" "}
 library(tidyverse)
 library(sf)
